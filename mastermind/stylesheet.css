@@ -1,0 +1,81 @@
+body {
+    text-align: center;
+    background-color: #23344b;
+}
+
+table.center {
+    margin: auto;
+}
+
+.divTable {
+    margin: 0 auto;
+    display: table;
+    table-layout: fixed;
+    width: 300px;
+    border-radius: 10px;
+    border-spacing: 10px;
+    background-color: #27536e;
+}
+
+.divTableRow {
+    display: table-row;
+}
+
+.divTableHeading {
+    background-color: #EEE;
+    display: table-header-group;
+}
+
+.divTableCell, .divTableHead {
+    border: none;
+    display: table-cell;
+    padding: 5px;
+    height: 25px;
+    border-radius: 25px;
+    background-color: rgb(111, 141, 175);
+}
+
+.celltext {
+    font-family: 'Roboto', sans-serif;
+    background-color: transparent;
+    text-align: center;
+    color: white;
+    font-size: 10px;
+}
+
+.divTableHeading {
+    background-color: #EEE;
+    display: table-header-group;
+    font-weight: bold;
+}
+
+.divTableFoot {
+    background-color: #EEE;
+    display: table-footer-group;
+    font-weight: bold;
+}
+
+.divTableBody {
+    display: table-row-group;
+}
+
+.button, .buttonGuess {
+    border: none;
+    padding: 15px 15px;
+    display: inline-block;
+    margin: 20px 10px;
+    cursor: pointer;
+    border-radius: 25px;
+}
+
+.buttonRed {background-color: red;}
+.buttonBlue {background-color: blue;}
+.buttonYellow {background-color: yellow;}
+.buttonGreen {background-color: green;}
+.buttonWhite {background-color: white;}
+.buttonPurple {background-color: purple;}
+
+#color1 {background-color: white;}
+#color2 {background-color: white;}
+#color3 {background-color: white;}
+#color4 {background-color: white;}
