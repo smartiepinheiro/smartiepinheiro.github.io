@@ -4,41 +4,33 @@ const solution = randomSolution();
 let numberOfTries = 0;
 let rightPlace;
 let wrongPlace;
-let input = "";
+let input = [];
+
+// color arrays
+let colorNames = ['red', 'blue', 'yellow', 'green', 'white', 'purple'];
+let colorRGBs = ['rgb(255, 80, 80)', 'rgb(59, 59, 207)', 'rgb(243, 243, 102)',
+    'rgb(45, 202, 52)', 'rgb(255, 255, 255)', 'rgb(150, 52, 150)'];
 
 function getColorFromName(name) {
-    if(name === 'red') return 'rgb(255, 80, 80)';
-    else if(name === 'blue') return 'rgb(59, 59, 207)';
-    else if(name === 'yellow') return 'rgb(243, 243, 102)';
-    else if(name === 'green') return 'rgb(45, 202, 52)';
-    else if(name === 'white') return 'rgb(255, 255, 255)';
-    else if(name === 'purple') return 'rgb(150, 52, 150)';
+    console.log(name);
+    for (let i = 0; i < 6; i++) {
+        if(colorNames[i] === name)
+            return colorRGBs[i];
+    }
 }
 
 function getNameFromColor(color) {
-    if(color === 'rgb(255, 80, 80)') return 'r';
-    else if(color === 'rgb(59, 59, 207)') return 'b';
-    else if(color === 'rgb(243, 243, 102)') return 'y';
-    else if(color === 'rgb(45, 202, 52)') return 'g';
-    else if(color === 'rgb(255, 255, 255)') return 'w';
-    else if(color === 'rgb(150, 52, 150)') return 'p';
-    console.log(color);
-}
-
-function getInputLetterToColor(letter) {
-    if(letter === 'r') return getColorFromName('red');
-    else if(letter === 'b') return getColorFromName('blue');
-    else if(letter === 'y') return getColorFromName('yellow');
-    else if(letter === 'g') return getColorFromName('green');
-    else if(letter === 'w') return getColorFromName('white');
-    else if(letter === 'p') return getColorFromName('purple');
+    for (let i = 0; i < 6; i++) {
+        if(colorRGBs[i] === color)
+            return colorNames[i];
+    }
 }
 
 // get user input
 function getInput() {
     for (let i = 1; i < 5; i++) {
-        input += getNameFromColor(document.getElementById("color" + i).style.backgroundColor);
-    }
+        input[i - 1] = getNameFromColor(document.getElementById("color" + i).style.backgroundColor);
+    } console.log("input: " + input);
 }
 
 // check if user chose all 4 colors for a guess
@@ -83,8 +75,7 @@ function updateTable() {
 function updateGuessCells() {
     for (let i = 1; i < 5; i++) {
         const id = "guess" + numberOfTries + "color" + i;
-        document.getElementById(id).style.backgroundColor = getInputLetterToColor(input[i - 1]);
-        console.log(input);
+        document.getElementById(id).style.backgroundColor = getColorFromName(input[i - 1]);
     }
 }
 
@@ -102,7 +93,7 @@ function play() {
         checkWinOrGameOver();
         checkCorrectLetterPlacing();
         updateTable();
-        input = "";
+        input = [];
     } else alert("Please complete your guess.")
 }
 
@@ -121,7 +112,10 @@ function checkWinOrGameOver() {
 
 // check if the input is the correct solution
 function checkWin() {
-    return input === solution;
+    for (let i = 0; i < 4; i++) {
+        if(input[i] !== solution[i])
+            return false;
+    } return true;
 }
 
 // check if the number of tries were exceeded
@@ -131,11 +125,11 @@ function checkGameOver() {
 
 // check if any letters are in the solution and on the right and later on the wrong position
 function checkCorrectLetterPlacing() {
-    const copyOfSolution = solution.split('');
-    const copyOfInput = input.split('');
+    const copyOfSolution = [...solution];
+    const copyOfInput = [...input];
     let right = 0;
 
-    for (var i = 0; i < 4; i++) {
+    for (let i = 0; i < 4; i++) {
         if (copyOfInput[i] === copyOfSolution[i]) {
             copyOfSolution[i] = '*';
             copyOfInput[i] = '+';
@@ -162,11 +156,11 @@ function checkWrongLetterPlacing(solution, input) {
 
 // random solution generator
 function randomSolution() {
-    const colors = ['r', 'b', 'y', 'g', 'w', 'p'];
-    let solution = "";
+    let colors = ['red', 'blue', 'yellow', 'green', 'white', 'purple'];
+    let solution = [];
 
     for (let i = 0; i < 4; i++) {
         const randomIndex = Math.floor(Math.random() * 6);
-        solution += colors[randomIndex];
+        solution[i] = colors[randomIndex];
     } return solution;
 }

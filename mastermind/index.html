@@ -107,24 +107,26 @@
     </div>
 </table>
 
-<div class="guessColors">
-    <button class="buttonGuess" id="color1" onclick="resetGuessedColor(this)"></button>
-    <button class="buttonGuess" id="color2" onclick="resetGuessedColor(this)"></button>
-    <button class="buttonGuess" id="color3" onclick="resetGuessedColor(this)"></button>
-    <button class="buttonGuess" id="color4" onclick="resetGuessedColor(this)"></button>
-</div>
+<div class="playerInput">
+    <div class="guessColors">
+        <button class="buttonGuess" id="color1" onclick="resetGuessedColor(this)"></button>
+        <button class="buttonGuess" id="color2" onclick="resetGuessedColor(this)"></button>
+        <button class="buttonGuess" id="color3" onclick="resetGuessedColor(this)"></button>
+        <button class="buttonGuess" id="color4" onclick="resetGuessedColor(this)"></button>
+    </div>
 
-<div class="colorOptions">
-    <button class="button buttonRed" onclick="updateGuessedColor('red')"></button>
-    <button class="button buttonBlue" onclick="updateGuessedColor('blue')"></button>
-    <button class="button buttonYellow" onclick="updateGuessedColor('yellow')"></button>
-    <button class="button buttonGreen" onclick="updateGuessedColor('green')"></button>
-    <button class="button buttonWhite" onclick="updateGuessedColor('white')"></button>
-    <button class="button buttonPurple" onclick="updateGuessedColor('purple')"></button>
-</div>
+    <div class="colorOptions">
+        <button class="button buttonRed" onclick="updateGuessedColor('red')"></button>
+        <button class="button buttonBlue" onclick="updateGuessedColor('blue')"></button>
+        <button class="button buttonYellow" onclick="updateGuessedColor('yellow')"></button>
+        <button class="button buttonGreen" onclick="updateGuessedColor('green')"></button>
+        <button class="button buttonWhite" onclick="updateGuessedColor('white')"></button>
+        <button class="button buttonPurple" onclick="updateGuessedColor('purple')"></button>
+    </div>
 
-<button id="guess" onclick="play()">Guess</button>
-<button id="restart" onclick="location.reload();">Play Again</button>
+    <button id="guess" onclick="play()">Guess</button>
+    <button id="restart" onclick="location.reload();">Play Again</button>
+</div>
 
 </body>
 </html>
