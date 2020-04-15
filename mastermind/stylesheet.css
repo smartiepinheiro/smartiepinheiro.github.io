@@ -68,12 +68,12 @@ table.center {
     border-radius: 25px;
 }
 
-.buttonRed {background-color: red;}
-.buttonBlue {background-color: blue;}
-.buttonYellow {background-color: yellow;}
-.buttonGreen {background-color: green;}
-.buttonWhite {background-color: white;}
-.buttonPurple {background-color: purple;}
+.buttonRed {background-color: rgb(255, 80, 80);}
+.buttonBlue {background-color: rgb(59, 59, 207);}
+.buttonYellow {background-color: rgb(243, 243, 102);}
+.buttonGreen {background-color: rgb(45, 202, 52);}
+.buttonWhite {background-color: rgb(255, 255, 255);}
+.buttonPurple {background-color: rgb(150, 52, 150);}
 
 #color1 {background-color: white;}
 #color2 {background-color: white;}
