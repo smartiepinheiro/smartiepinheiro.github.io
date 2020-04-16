@@ -8,7 +8,7 @@ let input = [];
 
 // color arrays
 let colorNames = ['red', 'blue', 'yellow', 'green', 'white', 'purple'];
-let colorRGBs = ['rgb(255, 80, 80)', 'rgb(59, 59, 207)', 'rgb(243, 243, 102)',
+let colorRGBs = ['rgb(255, 80, 80)', 'rgb(78, 89, 207)', 'rgb(243, 243, 102)',
     'rgb(50, 125, 63)', 'rgb(255, 255, 255)', 'rgb(150, 52, 150)'];
 
 function getColorFromName(name) {
@@ -90,9 +90,9 @@ function play() {
     if (guessIsComplete()) {
         getInput();
         numberOfTries++;
-        checkWinOrGameOver();
         checkCorrectLetterPlacing();
         updateTable();
+        checkWinOrGameOver();
         input = [];
     } else alert("Please complete your guess.")
 }
@@ -100,14 +100,22 @@ function play() {
 // check if the player won or exceeded the number of tries
 function checkWinOrGameOver() {
     if (checkWin()) {
-        alert("CONGRATS YOU GOT IT!");
+        alert("YOU GOT IT!");
         document.getElementById('guess').style.visibility = 'hidden';
+        displaySolution();
     }
 
     else if(checkGameOver()) {
-        alert("GAME OVER! The solution was " + solution);
+        alert("GAME OVER!");
         document.getElementById('guess').style.visibility = 'hidden';
+        displaySolution();
     }
+}
+
+function displaySolution() {
+    for (let i = 1; i < 5; i++) {
+        document.getElementById("color" + i).style.backgroundColor = getColorFromName(solution[i - 1]);
+    } document.getElementById('solutionDisplay').style.visibility = 'visible';
 }
 
 // check if the input is the correct solution

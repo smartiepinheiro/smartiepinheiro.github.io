@@ -15,6 +15,7 @@
 <div class="playerInput">
 
     <div class="title">Mastermind</div>
+    <div id="solutionDisplay">The solution was:</div>
 
     <div class="guessColors">
         <button class="buttonGuess" id="color1" onclick="resetGuessedColor(this)"></button>
@@ -37,9 +38,10 @@
             <button class="button buttonPurple" onclick="updateGuessedColor('purple')"></button>
         </div>
     </div>
-
-    <button id="guess" onclick="play()">Guess</button>
-    <button id="restart" onclick="location.reload();">Play Again</button>
+    <div class="playerButtons">
+        <button class="guess" id="guess" onclick="play()">Guess</button>
+        <button class="restart" id="restart" onclick="location.reload();">Play Again</button>
+    </div>
 </div>
 
 <div class="table">
