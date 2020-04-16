@@ -9,10 +9,9 @@ let input = [];
 // color arrays
 let colorNames = ['red', 'blue', 'yellow', 'green', 'white', 'purple'];
 let colorRGBs = ['rgb(255, 80, 80)', 'rgb(59, 59, 207)', 'rgb(243, 243, 102)',
-    'rgb(45, 202, 52)', 'rgb(255, 255, 255)', 'rgb(150, 52, 150)'];
+    'rgb(50, 125, 63)', 'rgb(255, 255, 255)', 'rgb(150, 52, 150)'];
 
 function getColorFromName(name) {
-    console.log(name);
     for (let i = 0; i < 6; i++) {
         if(colorNames[i] === name)
             return colorRGBs[i];
@@ -30,6 +29,7 @@ function getNameFromColor(color) {
 function getInput() {
     for (let i = 1; i < 5; i++) {
         input[i - 1] = getNameFromColor(document.getElementById("color" + i).style.backgroundColor);
+        console.log(document.getElementById("color" + i).style.backgroundColor);
     } console.log("input: " + input);
 }
 

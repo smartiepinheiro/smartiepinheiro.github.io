@@ -1,20 +1,46 @@
 body {
     text-align: center;
     background-color: #23344b;
+    display: grid;
+    grid-template-columns: 2fr 2fr;
 }
 
 table.center {
     margin: auto;
 }
 
+.playerInput {
+    margin: 20% 10% 5% 20%;
+    border: rgb(111, 141, 175);
+}
+
+.title {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+    margin-bottom: 20%;
+    color: #fff;
+}
+
+.separator {
+    margin-bottom: 40px;
+    color: lightsteelblue;
+    font-weight: bold;
+}
+
+.table {
+    margin-right: 30%;
+    margin-top: 10%;
+}
+
 .divTable {
     margin: 0 auto;
     display: table;
     table-layout: fixed;
-    width: 300px;
+    width: 350px;
     border-radius: 10px;
     border-spacing: 10px;
-    background-color: #27536e;
+    background-color: #afafaf;
 }
 
 .divTableRow {
@@ -30,17 +56,19 @@ table.center {
     border: none;
     display: table-cell;
     padding: 5px;
-    height: 25px;
+    height: 35px;
     border-radius: 25px;
-    background-color: rgb(111, 141, 175);
+    background-color: #8c8c8c;
 }
 
 .celltext {
     font-family: 'Roboto', sans-serif;
     background-color: transparent;
     text-align: center;
-    color: white;
-    font-size: 10px;
+    vertical-align: middle;
+    color: #23344b;
+    font-size: 15px;
+    font-weight: bold;
 }
 
 .divTableHeading {
@@ -66,12 +94,14 @@ table.center {
     margin: 20px 10px;
     cursor: pointer;
     border-radius: 25px;
+    height: 50px;
+    width: 50px;
 }
 
 .buttonRed {background-color: rgb(255, 80, 80);}
 .buttonBlue {background-color: rgb(59, 59, 207);}
 .buttonYellow {background-color: rgb(243, 243, 102);}
-.buttonGreen {background-color: rgb(45, 202, 52);}
+.buttonGreen {background-color: rgb(50,125,63);}
 .buttonWhite {background-color: rgb(255, 255, 255);}
 .buttonPurple {background-color: rgb(150, 52, 150);}
 
