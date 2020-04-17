@@ -14,7 +14,33 @@
 
 <div class="playerInput">
 
-    <div class="title">Mastermind</div>
+    <div id="titleDiv">
+        <div class="title">Mastermind</div>
+        <button id="rulesButton" onclick="rules()">Show rules</button>
+    </div>
+
+    <div class="rules" id="rules">
+        <div class="rulesText">
+            The goal of <b style="color:#552a2a">Mastermind</b> is to discover a combination of 4 colours selected by the computer at random.
+        </div>
+        <div class="rulesText">
+            At each turn, you make your own 4 color combination guess (colors can be repeated).
+        </div>
+
+        <div class="rulesText">
+            The <b style="color:#552a2a">right</b> column gives you how many colors are part of the solution and on the right position.
+        </div>
+        <div class="rulesText">
+            The <b style="color:#552a2a">wrong</b> column gives you how many are part of the solution but on the wrong position.
+        </div>
+        <div class="rulesText">
+            ________________________________________
+        </div>
+        <div class="rulesText tip">
+            <b style="color:#552a2a">Tip:</b> If you need to change your guess just click on that cell and it will be reset.
+        </div>
+    </div>
+
     <div id="solutionDisplay">The solution was:</div>
 
     <div class="guessColors">
@@ -119,22 +145,6 @@
                     <div class="divTableCell" id="guess8color4"></div>
                     <div class="divTableCell celltext" id="guess8right"></div>
                     <div class="divTableCell celltext" id="guess8wrong"></div>
-                </div>
-                <div class="divTableRow">
-                    <div class="divTableCell" id="guess9color1"></div>
-                    <div class="divTableCell" id="guess9color2"></div>
-                    <div class="divTableCell" id="guess9color3"></div>
-                    <div class="divTableCell" id="guess9color4"></div>
-                    <div class="divTableCell celltext" id="guess9right"></div>
-                    <div class="divTableCell celltext" id="guess9wrong"></div>
-                </div>
-                <div class="divTableRow">
-                    <div class="divTableCell" id="guess10color1"></div>
-                    <div class="divTableCell" id="guess10color2"></div>
-                    <div class="divTableCell" id="guess10color3"></div>
-                    <div class="divTableCell" id="guess10color4"></div>
-                    <div class="divTableCell celltext" id="guess10right"></div>
-                    <div class="divTableCell celltext" id="guess10wrong"></div>
                 </div>
             </div>
         </div>

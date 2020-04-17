@@ -5,6 +5,33 @@ body {
     grid-template-columns: 2fr 2fr;
 }
 
+#rules {
+    font-family: 'Roboto', sans-serif;
+    background-color: #9b4646;
+    font-size: 18px;
+    line-height: 30px;
+    color: #cdcdcd;
+    width: 55vh;
+    height: 55vh;
+    display: table;
+    position: absolute;
+    border-radius: 10px;
+    margin: 20px 0 0 50px;
+    padding: 40px 20px 20px 20px;
+    z-index: 1;
+    visibility: hidden;
+}
+
+.tip {
+    font-size: 18px;
+}
+
+.rulesText {
+    display: table-row;
+    vertical-align: center;
+    text-align: center;
+}
+
 table.center {
     margin: auto;
 }
@@ -33,7 +60,6 @@ table.center {
     font-family: 'Roboto', sans-serif;
     font-weight: bold;
     font-size: 30px;
-    margin-bottom: 5%;
     color: #fff;
 }
 
@@ -52,7 +78,7 @@ table.center {
     margin: 0 auto;
     display: table;
     table-layout: fixed;
-    width: 350px;
+    width: 420px;
     border-radius: 10px;
     border-spacing: 10px;
     background-color: #afafaf;
@@ -71,8 +97,8 @@ table.center {
     border: none;
     display: table-cell;
     padding: 5px;
-    height: 35px;
-    border-radius: 25px;
+    height: 50px;
+    border-radius: 30px;
     background-color: #8c8c8c;
 }
 
@@ -116,12 +142,12 @@ button:focus {
     outline:0 !important;
 }
 
-.button:hover, .buttonGuess:hover, .guess:hover, .restart:hover{
+.button:hover, .buttonGuess:hover, .guess:hover, .restart:hover, #rulesButton:hover{
     transform: scale(1.1);
     transition-duration: 200ms;
 }
 
-.guess, .restart {
+.guess, .restart, #rulesButton {
     width: 20vh;
     margin: 10px 0 10px 0;
     border: none;
@@ -141,6 +167,13 @@ button:focus {
 .restart {
     background-color: rgb(195, 115, 115);
     border-radius: 10px;
+}
+
+#rulesButton {
+    background-color: #132b37;
+    border-radius: 10px;
+    display: table-cell;
+    padding: 5px 1px 5px 1px;
 }
 
 .buttonRed {background-color: rgb(255, 80, 80);}

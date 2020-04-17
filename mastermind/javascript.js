@@ -128,7 +128,7 @@ function checkWin() {
 
 // check if the number of tries were exceeded
 function checkGameOver() {
-    return numberOfTries === 10;
+    return numberOfTries === 8;
 }
 
 // check if any letters are in the solution and on the right and later on the wrong position
@@ -171,4 +171,17 @@ function randomSolution() {
         const randomIndex = Math.floor(Math.random() * 6);
         solution[i] = colors[randomIndex];
     } return solution;
+}
+
+// show rules div
+let showRules = false;
+
+function rules() {
+    if(!showRules) {
+        document.getElementById('rules').style.visibility = 'visible';
+        document.getElementById('rulesButton').innerText = 'Close rules';
+    } else {
+        document.getElementById('rules').style.visibility = 'hidden';
+        document.getElementById('rulesButton').innerText = 'Show rules';
+    } showRules = !showRules;
 }
