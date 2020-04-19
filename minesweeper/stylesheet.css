@@ -18,8 +18,8 @@ body {
 .divTable {
     display: table;
     width: 100vh;
-    position: fixed;
-    margin-left: 40%;
+    position: absolute;
+    margin-left: 45%;
     margin-top: 5%;
 }
 
@@ -36,8 +36,8 @@ body {
     background-color: #afafaf;
     padding: 3px 10px;
     margin: 2px;
-    width: 35px;
-    height: 35px;
+    width: 4vh;
+    height: 4vh;
     line-height: 30px;
     text-align: center;
     vertical-align: middle;
