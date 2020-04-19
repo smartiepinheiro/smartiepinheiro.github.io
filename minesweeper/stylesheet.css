@@ -1,0 +1,91 @@
+::selection {
+    color: none;
+    background: none;
+}
+
+/* For Mozilla Firefox */
+::-moz-selection {
+    color: none;
+    background: none;
+}
+
+body {
+    background-color: #2d9968;
+    display: grid;
+    grid-auto-columns: 1fr 3fr;
+}
+
+.divTable {
+    display: table;
+    width: 100vh;
+    position: fixed;
+    margin-left: 40%;
+    margin-top: 5%;
+}
+
+.divTableBody {
+    display: table-row-group;
+}
+
+.divTableRow {
+    display: table-row;
+}
+
+.divTableCell, .divTableHead {
+    border-radius: 2px;
+    background-color: #afafaf;
+    padding: 3px 10px;
+    margin: 2px;
+    width: 35px;
+    height: 35px;
+    line-height: 30px;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+button {
+    display: inline-block;
+}
+
+.tileAndRules {
+    margin: 10vh 125vh 5vh 13vh;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    line-height: 20px;
+    height: auto;
+    border-radius: 5px;
+    position: relative;
+}
+
+#rules1, #rules2, #rules3, #rules4, #rules5, #rules6, #pinsLeftNumber, #pinsLeftNumber, #tile, #playAgain {
+    width: auto;
+    height: auto;
+    margin: 0 auto;
+    padding: 8px;
+    position: relative;
+}
+
+#tile {
+    text-align: center;
+    font-size: 26px;
+}
+
+#pinsLeftNumber {
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 3vh;
+}
+
+#playAgain {
+    background-color: rgb(215, 215, 215);
+    border: none;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+}
