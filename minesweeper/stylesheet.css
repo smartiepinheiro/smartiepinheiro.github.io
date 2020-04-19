@@ -10,7 +10,7 @@
 }
 
 body {
-    background-color: #2d9968;
+    background-color: #12a584;
     display: grid;
     grid-auto-columns: 1fr 3fr;
 }
@@ -18,9 +18,9 @@ body {
 .divTable {
     display: table;
     width: 100vh;
-    position: absolute;
     margin-left: 45%;
     margin-top: 5%;
+    position: fixed;
 }
 
 .divTableBody {
@@ -52,13 +52,12 @@ button {
 }
 
 .tileAndRules {
-    margin: 10vh 125vh 5vh 13vh;
+    margin: 15vh 120vh 5vh 13vh;
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
     line-height: 20px;
     height: auto;
     border-radius: 5px;
-    position: relative;
 }
 
 #rules1, #rules2, #rules3, #rules4, #rules5, #rules6, #pinsLeftNumber, #pinsLeftNumber, #tile, #playAgain {
@@ -66,7 +65,6 @@ button {
     height: auto;
     margin: 0 auto;
     padding: 8px;
-    position: relative;
 }
 
 #tile {
