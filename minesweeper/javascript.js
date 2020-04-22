@@ -48,7 +48,7 @@ function rightClick(id) {
             document.getElementById(id).style.backgroundColor = 'lightgrey';
             pins.push(id);
             pinsLeft--;
-        } else if(document.getElementById(id).innerText === "📌") reversePin(id);
+        } else if (document.getElementById(id).innerText === "📌") reversePin(id);
     } else if (document.getElementById(id).innerText === "📌") reversePin(id);
     document.getElementById('pinsLeftNumber').innerText = "Pins left: " + pinsLeft.toString();
     win();
@@ -57,6 +57,7 @@ function rightClick(id) {
 // little aux for the method above
 function reversePin(id) {
     unpin(id.replace("cell", ""));
+    pins.splice(pins.indexOf(id));
     pinsLeft++;
 }
 
@@ -215,7 +216,7 @@ function generalCellUpdate(method, id, i) {
 function incorrectPins() {
     for (let i = 0; i < pins.length; i++) {
         console.log(pins[i]);
-        if(!bombs.includes(pins[i]))
+        if (!bombs.includes(pins[i]))
             document.getElementById(pins[i]).innerText = '❌';
     }
 }
