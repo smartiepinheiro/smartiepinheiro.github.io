@@ -1,4 +1,14 @@
 body {
+    /* disable text selection */
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
+}
+
+body {
     text-align: center;
     background-color: #23344b;
     display: grid;
@@ -11,12 +21,12 @@ body {
     font-size: 18px;
     line-height: 30px;
     color: #cdcdcd;
-    width: 55vh;
-    height: 55vh;
+    width: 30%;
+    height: 60vh;
     display: table;
     position: absolute;
     border-radius: 10px;
-    margin: 20px 0 0 50px;
+    margin: 0 0 0 0;
     padding: 40px 20px 20px 20px;
     z-index: 1;
     visibility: hidden;
@@ -187,3 +197,54 @@ button:focus {
 #color2 {background-color: white;}
 #color3 {background-color: white;}
 #color4 {background-color: white;}
+
+@media only screen and (max-width: 1000px) {
+    .button, .buttonGuess {
+        padding: 15px 15px;
+        margin: 5px 5px;
+        height: 40px;
+        width: 40px;
+    }
+
+    .divTable {
+        width: 350px;
+    }
+
+    .divTableCell, .divTableHead {
+        height: 35px;
+    }
+
+    #rules {
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    body {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .playerInput {
+        margin: 5% 5% 5% 5%;
+        border: rgb(111, 141, 175);
+    }
+
+    .table {
+        margin-right: 0;
+        margin-top: 0;
+    }
+
+    #rules {
+        width: 80%;
+        height: 55vh;
+        display: table;
+        position: absolute;
+        border-radius: 10px;
+        margin: 0 auto;
+        padding: 40px 20px 20px 20px;
+        z-index: 1;
+        visibility: hidden;
+    }
+}
