@@ -61,6 +61,27 @@ function reversePin(id) {
     pinsLeft++;
 }
 
+// double click action
+function doubleClick(id) {
+    const text = document.getElementById(id).innerText;
+    if(text !== "💣") {
+        generalCellUpdate(circleCheck, parseInt(id.replace("cell", "")), id);
+    }
+}
+
+// little aux for the method above
+function circleCheck(aux, i) {
+    i = i.replace("cell", "");
+    let bombsFound = [];
+    for (let j = 0; j < aux.length; j++) {
+        if(document.getElementById("cell" + (parseInt(i) + aux[j])).innerText === "")
+            leftClick("cell" + (parseInt(i) + aux[j]));
+        else if (document.getElementById("cell" + (parseInt(i) + aux[j])).innerText !== "💣")
+            showCell("cell" + (parseInt(i) + aux[j]));
+        else bombsFound.push("cell" + (parseInt(i) + aux[j]));
+    } if(bombsFound.length > 0) gameOverFromDoubleClick(bombsFound);
+}
+
 // randomize bombs and place a bomb icon on all those cells
 function generateBombs() {
     randomizeBombs();
@@ -106,9 +127,17 @@ function updateCells(aux, i) {
 // game over by clicking on a bomb
 function gameOver(id) {
     if (document.getElementById(id).innerText === "💣") {
+        document.getElementById(id).innerText = '💥';
         alert("GAME OVER");
         end();
     }
+}
+
+function gameOverFromDoubleClick(bombsFound) {
+    for (let i = 0; i < bombsFound.length; i++) {
+        document.getElementById(bombsFound[i]).innerText = '💥';
+    } alert("GAME OVER");
+    end();
 }
 
 // win by either pinning all the bombs or left clicking on all non bomb cells
@@ -192,6 +221,7 @@ function unpinAndRestore(aux, id) {
 }
 
 // loop used in various methods to update cell values
+// example - method , id: cell8 , i: 8
 function generalCellUpdate(method, id, i) {
     if (topLeft.includes(id))
         method([+1, +12, +13], i);
@@ -215,7 +245,6 @@ function generalCellUpdate(method, id, i) {
 // shows incorrect pins at the end of the game
 function incorrectPins() {
     for (let i = 0; i < pins.length; i++) {
-        console.log(pins[i]);
         if (!bombs.includes(pins[i]))
             document.getElementById(pins[i]).innerText = '❌';
     }
