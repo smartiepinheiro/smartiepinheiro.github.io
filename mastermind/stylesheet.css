@@ -158,7 +158,7 @@ button:focus {
 }
 
 .guess, .restart, #rulesButton {
-    width: 20vh;
+    width: 25vh;
     margin: 10px 0 10px 0;
     border: none;
     color: white;
@@ -215,11 +215,11 @@ button:focus {
     }
 
     #rules {
-        width: 80%;
+        width: 70vh;
     }
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 750px) {
     body {
         display: flex;
         flex-direction: column;
@@ -246,5 +246,19 @@ button:focus {
         padding: 40px 20px 20px 20px;
         z-index: 1;
         visibility: hidden;
+    }
+
+    .playerButtons {
+        width: 100%;
+        margin: 0 auto;
+        display: inline-block;
+    }
+
+    .guess {
+        margin: 30px 5px 0 5px;
+    }
+
+    .restart {
+        margin: 30px 5px 0 5px;
     }
 }
