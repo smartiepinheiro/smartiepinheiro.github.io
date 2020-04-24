@@ -83,24 +83,19 @@ function randomizeBombs() {
 // update non bomb cell with the correspondent number of adjacent bombs
 function setCells() {
     for (let i = 1; i < 145; i++) {
-        if (document.getElementById("cell" + i).innerText === "💣")
+        if (document.getElementById("cell" + i).innerText !== "💣")
             generalCellUpdate(updateCells, i, i);
     }
 }
 
 // check how many bombs are adjacent to a given cell
 function updateCells(aux, i) {
+    let bombsFound = 0;
     for (let j = 0; j < aux.length; j++) {
-        if (document.getElementById("cell" + (i + aux[j])) != null &&
-            document.getElementById("cell" + (i + aux[j])).innerText !== "💣") {
-            if (document.getElementById("cell" + (i + aux[j])).innerText === '')
-                document.getElementById("cell" + (i + aux[j])).innerText = '1';
-            else {
-                const bombsNow = parseInt(document.getElementById("cell" + (i + aux[j])).innerText) + 1;
-                document.getElementById("cell" + (i + aux[j])).innerText = bombsNow.toString();
-            }
-        }
-    }
+        if (document.getElementById("cell" + (i + aux[j])).innerText === "💣")
+            bombsFound++;
+    } if(bombsFound === 0) document.getElementById("cell" + i).innerText = "";
+    else document.getElementById("cell" + i).innerText = bombsFound.toString();
 }
 
 // game over by clicking on a bomb
