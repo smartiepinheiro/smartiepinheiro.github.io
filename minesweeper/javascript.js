@@ -274,11 +274,10 @@ function onGoingTimer(){
 
 function updateBestTime() {
     if(document.getElementById("bestTime").innerText === '00:00')
-        document.getElementById("bestTime").innerText = document.getElementById("currentTime").innerText;
-    else if(document.getElementById("currentTime").innerText < document.getElementById("bestTime").innerText) {
-        document.getElementById("bestTime").innerText = document.getElementById("currentTime").innerText;
         setCookie(document.getElementById("currentTime").innerText);
-    }
+    else if(document.getElementById("currentTime").innerText < document.getElementById("bestTime").innerText) {
+        setCookie(document.getElementById("currentTime").innerText);
+    } document.getElementById("bestTime").innerText = getCookie();
 }
 
 function setUpHighScore() {
