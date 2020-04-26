@@ -83,7 +83,7 @@ function rightClick(id) {
 // little aux for the method above
 function reversePin(id) {
     unpin(id.replace("cell", ""));
-    pins.splice(pins.indexOf(id));
+    pins.splice(pins.indexOf(id), 1);
     pinsLeft++;
 }
 
@@ -146,9 +146,16 @@ function win() {
 // check if all non bomb cells where clicked
 function allNonBombCellsClicked() {
     for (let i = 1; i < 145; i++) {
-        if (document.getElementById("cell" + i).innerText !== "💣" &&
+        if (document.getElementById("cell" + i).innerText !== "💣" && allPinsRight() &&
             document.getElementById("cell" + i).style.backgroundColor !== 'lightgrey')
             return false;
+    } return true;
+}
+
+// check if all the current placed pins are correct
+function allPinsRight() {
+    for (let i = 0; i < pins; i++) {
+        if(!bombs.includes(pins[i])) return false;
     } return true;
 }
 
