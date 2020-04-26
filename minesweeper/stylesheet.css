@@ -1,11 +1,11 @@
 ::selection {
-    color: none;
+    color: unset;
     background: none;
 }
 
 /* For Mozilla Firefox */
 ::-moz-selection {
-    color: none;
+    color: unset;
     background: none;
 }
 
@@ -47,11 +47,18 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
+.playerButtons {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    margin: 40px 60px 0 60px;
+    align-items: normal;
+}
+
 button {
     display: inline-block;
 }
 
-.tileAndRules {
+.titleAndOther {
     margin: 15vh 120vh 5vh 13vh;
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
@@ -60,30 +67,84 @@ button {
     border-radius: 5px;
 }
 
-#rules1, #rules2, #rules3, #rules4, #rules5, #rules6, #pinsLeftNumber, #pinsLeftNumber, #tile, #playAgain {
-    width: auto;
-    height: auto;
-    margin: 0 auto;
-    padding: 8px;
+#title {
+    text-align: center;
+    font-size: 30px;
 }
 
-#tile {
+#timers {
+    margin-top: 100px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 10px;
+    font-size: 20px;
     text-align: center;
-    font-size: 26px;
 }
 
-#pinsLeftNumber {
-    font-size: 18px;
+#pins {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 10px;
+    font-size: 20px;
     text-align: center;
-    margin-bottom: 3vh;
+    margin: 50px 0 50px 0;
+}
+
+#playAgain, #rulesButton {
+    color: lightgrey;
+    border: none;
+    justify-content: center;
+    border-radius: 10px;
+    width: 20vh;
+    margin: 10px 0 10px 0;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
 }
 
 #playAgain {
-    background-color: rgb(215, 215, 215);
-    border: none;
-    border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    margin-top: 3vh;
-    margin-bottom: 3vh;
+    background-color: #872514;
+}
+
+#rulesButton {
+    background-color: #136e4e;
+}
+
+#rules {
+    font-family: 'Roboto', sans-serif;
+    background-color: #afafaf;
+    font-size: 14px;
+    color: #191919;
+    width: 60vh;
+    height: 30vh;
+    line-height: 30px;
+    display: table;
+    position: absolute;
+    border-radius: 10px;
+    margin: 0;
+    padding: 20px 30px 20px 30px;
+    z-index: 1;
+    visibility: hidden;
+}
+
+.rulesText {
+    display: table-row;
+    vertical-align: center;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.space {
+    height: 20px;
+}
+
+button:hover{
+    transform: scale(1.1);
+    transition-duration: 200ms;
+}
+
+button:focus {
+    outline:0 !important;
 }

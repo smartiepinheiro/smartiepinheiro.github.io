@@ -16,10 +16,24 @@ function mouseDown(e, id) {
     }
 }
 
+// show rules div
+let showRules = false;
+
+function rules() {
+    if(!showRules) {
+        document.getElementById('rules').style.visibility = 'visible';
+        document.getElementById('rulesButton').innerText = 'Close rules';
+    } else {
+        document.getElementById('rules').style.visibility = 'hidden';
+        document.getElementById('rulesButton').innerText = 'Show rules';
+    } showRules = !showRules;
+}
+
 // variables
 let bombs = [];
 let pins = [];
 let pinsLeft = 20;
+let firstClick = true;
 
 const left = [1, 13, 25, 37, 49, 61, 73, 85, 97, 109, 121, 133];
 const right = [12, 24, 36, 48, 60, 72, 84, 96, 108, 120, 132, 144];
@@ -31,16 +45,28 @@ const topRight = [12];
 const bottomLeft = [133];
 const bottomRight = [144];
 
+
+// check if it's the first click so the timer starts
+function checkFirstClick() {
+    if(firstClick) {
+        firstClick = !firstClick;
+        time = !time;
+        setInterval(onGoingTimer, 1000);
+    }
+}
+
 // left click action
 function leftClick(id) {
+    checkFirstClick();
     gameOver(id);
-    win();
     whitespace(id);
     showCell(id);
+    win();
 }
 
 // right click action
 function rightClick(id) {
+    checkFirstClick();
     if (pinsLeft > 0) {
         if (document.getElementById(id).innerText !== "📌" && document.getElementById(id).style.backgroundColor !== 'lightgrey') {
             document.getElementById(id).innerText = "📌";
@@ -50,7 +76,7 @@ function rightClick(id) {
             pinsLeft--;
         } else if (document.getElementById(id).innerText === "📌") reversePin(id);
     } else if (document.getElementById(id).innerText === "📌") reversePin(id);
-    document.getElementById('pinsLeftNumber').innerText = "Pins left: " + pinsLeft.toString();
+    document.getElementById('pinsLeftNumber').innerText = pinsLeft.toString();
     win();
 }
 
@@ -65,8 +91,7 @@ function reversePin(id) {
 function generateBombs() {
     randomizeBombs();
     for (let i = 0; i < 20; i++) {
-        if (document.getElementById(bombs[i]).innerText !== "💣")
-            document.getElementById(bombs[i]).innerText = "💣";
+        document.getElementById(bombs[i]).innerText = "💣";
     } setCells();
 }
 
@@ -104,6 +129,7 @@ function gameOver(id) {
         document.getElementById(id).innerText = '💥';
         alert("GAME OVER");
         end();
+        time = !time;
     }
 }
 
@@ -111,24 +137,25 @@ function gameOver(id) {
 function win() {
     if (bombs.every(e => pins.includes(e)) || allNonBombCellsClicked()) {
         alert("GOOD JOB! YOU GOT IT!");
+        updateBestTime();
         end();
+        time = !time;
     }
 }
 
 // check if all non bomb cells where clicked
 function allNonBombCellsClicked() {
     for (let i = 1; i < 145; i++) {
-        if (document.getElementById("cell" + i).style.fontSize !== '14px' ||
-            document.getElementById("cell" + i).innerText !== "💣")
+        if (document.getElementById("cell" + i).innerText !== "💣" &&
+            document.getElementById("cell" + i).style.backgroundColor !== 'lightgrey')
             return false;
-    }
+    } return true;
 }
 
 // if win() or gameOver() are triggered show all of the cells content
 function end() {
     for (let i = 1; i < 145; i++) {
-        if (document.getElementById("cell" + i).style.fontSize !== '14px')
-            document.getElementById("cell" + i).style.fontSize = '14px';
+        document.getElementById("cell" + i).style.fontSize = '14px';
     } incorrectPins();
     // disable clicks inside table
     document.getElementsByClassName('divTableBody')[0].style.pointerEvents = 'none';
@@ -184,13 +211,14 @@ function unpinAndRestore(aux, id) {
         const i = id.replace("cell", "");
         if (document.getElementById("cell" + (parseInt(i) + aux[j])).innerText === '💣')
             bombCount++;
-    } if(bombCount === 0) document.getElementById(id).innerText = "";
+    } if (bombCount === 0) document.getElementById(id).innerText = "";
     else document.getElementById(id).innerText = bombCount.toString();
 }
 
 // loop used in various methods to update cell values
 // example - method , id: cell8 , i: 8
 function generalCellUpdate(method, id, i) {
+    id = parseInt(id);
     if (topLeft.includes(id))
         method([+1, +12, +13], i);
     else if (topRight.includes(id))
@@ -216,4 +244,61 @@ function incorrectPins() {
         if (!bombs.includes(pins[i]))
             document.getElementById(pins[i]).innerText = '❌';
     }
+}
+
+// timer logic
+let seconds = 1;
+let minutes = 0;
+let secondsToText = "";
+let minutesToText = "";
+let time = false;
+
+function timeToText() {
+    if (seconds < 10) secondsToText = "0" + seconds;
+    else if (seconds > 9) secondsToText = seconds;
+    if (minutes < 10) minutesToText = "0" + minutes;
+    else if (minutes > 9) minutesToText = minutes;
+
+    return minutesToText + ":" + secondsToText;
+}
+
+function onGoingTimer(){
+    if(time) {
+        document.getElementById("currentTime").innerText = timeToText();
+        if (seconds === 59) {
+            seconds = 0;
+            minutes++;
+        } else seconds++;
+    }
+}
+
+function updateBestTime() {
+    if(document.getElementById("bestTime").innerText === '00:00')
+        document.getElementById("bestTime").innerText = document.getElementById("currentTime").innerText;
+    else if(document.getElementById("currentTime").innerText < document.getElementById("bestTime").innerText) {
+        document.getElementById("bestTime").innerText = document.getElementById("currentTime").innerText;
+        setCookie(document.getElementById("currentTime").innerText);
+    }
+}
+
+function setUpHighScore() {
+    if (getCookie() === '') setCookie('00:00');
+    document.getElementById("bestTime").innerText = getCookie();
+}
+
+function setCookie(cookieValue) {
+    document.cookie = "highScore=" + cookieValue + ";" + "expires=Fri, 31 Dec 9999 23:59:59 GMT" + ";path=/";
+}
+
+function getCookie() {
+    const name = 'highScore=';
+    const decodedCookie = decodeURIComponent(document.cookie);
+    const ca = decodedCookie.split(';');
+    for(let i = 0; i <ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) === ' ') {
+            c = c.substring(1);
+        } if (c.indexOf(name) === 0)
+            return (c.substring(name.length, c.length)).replace("highScore=", "");
+    } return "";
 }

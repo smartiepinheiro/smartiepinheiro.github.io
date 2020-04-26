@@ -9,20 +9,40 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 </head>
 
-<body onload="generateBombs()">
+<body onload="generateBombs(); setUpHighScore();">
 
-<div class="tileAndRules">
-    <div id="tile"><b>Minesweeper</b></div>
-    <button id="playAgain" onclick="window.location.reload();"><b>Play again</b></button>
-    <div id="pinsLeftNumber">Pins left: 20</div>
+<div class="titleAndOther">
+    <div id="title"><b>Minesweeper</b></div>
 
-    <div id="rules1">The objective of the game is to <b>locate all of the 20 hidden mines.</b>
-        The numbers on the cells tells you <b>how many mines</b> that cell is touching.</div>
-    <div id="rules2"><b>Left click</b> on a cell if you believe it doesn't hold a mine.
-        <b>Right click</b> on a cell if you believe it does hold a mine to <b>pin</b> it.
-        If you believe you wrongly pinned it just right click again to <b>unpin</b> it.</div>
-    <div id="rules3">You <b>lose</b> when a cell that you left click open contains a mine.
-        You <b>win</b> if you either pin all the mines or left click on all the non-mine cells.</div>
+    <div class="playerButtons">
+        <button id="rulesButton" onclick="rules()">Show rules</button>
+        <button id="playAgain" onclick="window.location.reload()">Play again</button>
+    </div>
+
+    <div id="rules">
+        <div class="rulesText" id="rules1">The objective of the game is to <b>locate all of the 20 hidden mines.</b>
+            The numbers on the cells tells you <b>how many mines</b> that cell is touching (above, below, left, right, and all 4 diagonals).
+        </div>
+        <div class="space"></div>
+        <div class="rulesText" id="rules2"><b>Left click</b> on a cell if you believe it doesn't hold a mine.
+            <b>Right click</b> on a cell if you believe it does hold a mine to <b>pin</b> it.
+            If you believe you wrongly pinned it just right click again to <b>unpin</b> it.
+        </div>
+        <div class="space"></div>
+        <div class="rulesText" id="rules3">You <b>lose</b> when a cell that you left click open contains a mine.
+            You <b>win</b> if you either pin all the mines or left click on all the non-mine cells.
+        </div>
+    </div>
+
+    <div id="timers">
+        <div id="pinsLeftTitle"><b>Pins left:</b></div>
+        <div id="currentTimeTitle"><b>Current Time:</b></div>
+        <div id="bestTimeTitle"><b>HighScore:</b></div>
+        <div id="pinsLeftNumber">20</div>
+        <div id="currentTime">00:00</div>
+        <div id="bestTime">00:00</div>
+    </div>
+
 </div>
 
 <div class="divTable">
