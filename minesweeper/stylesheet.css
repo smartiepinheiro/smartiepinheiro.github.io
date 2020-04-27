@@ -10,7 +10,7 @@
 }
 
 body {
-    background-color: #12a584;
+    background-color: #23344b;
     display: grid;
     grid-auto-columns: 1fr 3fr;
 }
@@ -33,7 +33,7 @@ body {
 
 .divTableCell, .divTableHead {
     border-radius: 2px;
-    background-color: #afafaf;
+    background-color: #6a8091;
     padding: 3px 10px;
     margin: 2px;
     width: 4vh;
@@ -70,6 +70,7 @@ button {
 #title {
     text-align: center;
     font-size: 30px;
+    color: #fff;
 }
 
 #timers {
@@ -79,6 +80,7 @@ button {
     grid-gap: 10px;
     font-size: 20px;
     text-align: center;
+    color: #fff;
 }
 
 #pins {
@@ -91,7 +93,7 @@ button {
 }
 
 #playAgain, #rulesButton {
-    color: lightgrey;
+    color: #ffffff;
     border: none;
     justify-content: center;
     border-radius: 10px;
@@ -105,18 +107,18 @@ button {
 }
 
 #playAgain {
-    background-color: #872514;
+    background-color: rgb(195, 115, 115);
 }
 
 #rulesButton {
-    background-color: #136e4e;
+    background-color: #6a8091;
 }
 
 #rules {
     font-family: 'Roboto', sans-serif;
     background-color: #afafaf;
     font-size: 14px;
-    color: #191919;
+    color: #23344b;
     width: 60vh;
     height: 30vh;
     line-height: 30px;

@@ -117,7 +117,7 @@ function setCells() {
 function updateCells(aux, i) {
     let bombsFound = 0;
     for (let j = 0; j < aux.length; j++) {
-        if (document.getElementById("cell" + (i + aux[j])).innerText === "💣")
+        if (bombs.includes("cell" + (i + aux[j])))
             bombsFound++;
     } if(bombsFound === 0) document.getElementById("cell" + i).innerText = "";
     else document.getElementById("cell" + i).innerText = bombsFound.toString();
@@ -201,7 +201,7 @@ function showCell(id) {
 // hide cell
 function hideCell(id) {
     document.getElementById(id).style.fontSize = '0';
-    document.getElementById(id).style.backgroundColor = '#afafaf';
+    document.getElementById(id).style.backgroundColor = '#6a8091';
 }
 
 // unpin pinned cell and restore it's value
@@ -215,8 +215,8 @@ function unpin(i) {
 function unpinAndRestore(aux, id) {
     let bombCount = 0;
     for (let j = 0; j < aux.length; j++) {
-        const i = id.replace("cell", "");
-        if (document.getElementById("cell" + (parseInt(i) + aux[j])).innerText === '💣')
+        const i = parseInt(id.replace("cell", ""));
+        if (bombs.includes("cell" + (i + aux[j])))
             bombCount++;
     } if (bombCount === 0) document.getElementById(id).innerText = "";
     else document.getElementById(id).innerText = bombCount.toString();
