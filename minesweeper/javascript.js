@@ -16,6 +16,16 @@ function mouseDown(e, id) {
     }
 }
 
+// disables clicks while table is still generating and at the game over/win situations
+function disableClicks() {
+    document.getElementsByClassName('divTableBody')[0].style.pointerEvents = 'none';
+}
+
+// enable clicks after table is generated
+function enableClicks() {
+    document.body.style.pointerEvents = 'auto';
+}
+
 // show rules div
 let showRules = false;
 
@@ -49,6 +59,7 @@ const bottomRight = [144];
 // check if it's the first click so the timer starts
 function checkFirstClick() {
     if(firstClick) {
+        setTimeout("enableClicks()", 500);
         firstClick = !firstClick;
         time = !time;
         setInterval(onGoingTimer, 1000);
@@ -68,13 +79,12 @@ function leftClick(id) {
 function doubleClick(id) {
     const text = document.getElementById(id).innerText;
     if(text !== "💣") {
-        generalCellUpdate(circleCheck, parseInt(id.replace("cell", "")), id);
+        generalCellUpdate(circleCheck, parseInt(id.replace("cell", "")));
     }
 }
 
 // little aux for the method above
 function circleCheck(aux, i) {
-    i = i.replace("cell", "");
     let bombsFound = [];
     for (let j = 0; j < aux.length; j++) {
         if(document.getElementById("cell" + (parseInt(i) + aux[j])).innerText === "")
@@ -130,8 +140,8 @@ function randomizeBombs() {
 function setCells() {
     for (let i = 1; i < 145; i++) {
         if (document.getElementById("cell" + i).innerText !== "💣")
-            generalCellUpdate(updateCells, i, i);
-    }
+            generalCellUpdate(updateCells, i);
+    } setTimeout("enableClicks()", 500);
 }
 
 // check how many bombs are adjacent to a given cell
@@ -158,7 +168,14 @@ function gameOverFromDoubleClick(bombsFound) {
     for (let i = 0; i < bombsFound.length; i++) {
         document.getElementById(bombsFound[i]).innerText = '💥';
     } alert("GAME OVER");
+    time = !time;
     end();
+}
+
+function gameOverFromTooMuchTimePasses() {
+    alert("GAME OVER");
+    end();
+    time = !time;
 }
 
 // win by either pinning all the bombs or left clicking on all non bomb cells
@@ -191,9 +208,7 @@ function allPinsRight() {
 function end() {
     for (let i = 1; i < 145; i++) {
         document.getElementById("cell" + i).style.fontSize = '14px';
-    } incorrectPins();
-    // disable clicks inside table
-    document.getElementsByClassName('divTableBody')[0].style.pointerEvents = 'none';
+    } incorrectPins(); disableClicks();
 }
 
 // cascade effect when clicking on a '0' cell
@@ -201,7 +216,7 @@ function whitespace(id) {
     const i = id.replace("cell", "");
     if (document.getElementById(id).innerText === '') {
         showCell(id);
-        generalCellUpdate(whitespaceUpdateCells, parseInt(i), i);
+        generalCellUpdate(whitespaceUpdateCells, parseInt(i));
     }
 }
 
@@ -209,7 +224,7 @@ function whitespace(id) {
 function whitespaceUpdateCells(aux, id) {
     let index = id;
     for (let i = 0; i < aux.length; i++) {
-        index = "cell" + (parseInt(id.replace("cell", "")) + aux[i]);
+        index = "cell" + (id + aux[i]);
 
         if (document.getElementById(index).innerText === '' && document.getElementById(index).style.color !== 'black') {
             showCell(index);
@@ -235,7 +250,7 @@ function hideCell(id) {
 // unpin pinned cell and restore it's value
 function unpin(i) {
     if (bombs.includes("cell" + i)) document.getElementById("cell" + i).innerText = "💣";
-    else generalCellUpdate(unpinAndRestore, i, "cell" + i);
+    else generalCellUpdate(unpinAndRestore, i);
     hideCell("cell" + i);
 }
 
@@ -243,34 +258,34 @@ function unpin(i) {
 function unpinAndRestore(aux, id) {
     let bombCount = 0;
     for (let j = 0; j < aux.length; j++) {
-        const i = parseInt(id.replace("cell", ""));
+        const i = parseInt(id);
         if (bombs.includes("cell" + (i + aux[j])))
             bombCount++;
-    } if (bombCount === 0) document.getElementById(id).innerText = "";
-    else document.getElementById(id).innerText = bombCount.toString();
+    } if (bombCount === 0) document.getElementById("cell" + id).innerText = "";
+    else document.getElementById("cell" + id).innerText = bombCount.toString();
 }
 
 // loop used in various methods to update cell values
-// example - method , id: cell8 , i: 8
-function generalCellUpdate(method, id, i) {
+// example - method: unpinAndRestore, id: 40 (number of the cell)
+function generalCellUpdate(method, id) {
     id = parseInt(id);
     if (topLeft.includes(id))
-        method([+1, +12, +13], i);
+        method([+1, +12, +13], id);
     else if (topRight.includes(id))
-        method([-1, +11, +12], i);
+        method([-1, +11, +12], id);
     else if (bottomLeft.includes(id))
-        method([-12, -11, +1], i);
+        method([-12, -11, +1], id);
     else if (bottomRight.includes(id))
-        method([-13, -12, -1], i);
+        method([-13, -12, -1], id);
     else if (left.includes(id))
-        method([-12, -11, +1, +12, +13], i);
+        method([-12, -11, +1, +12, +13], id);
     else if (right.includes(id))
-        method([-13, -12, -1, +11, +12], i);
+        method([-13, -12, -1, +11, +12], id);
     else if (up.includes(id))
-        method([-1, +1, +11, +12, +13], i);
+        method([-1, +1, +11, +12, +13], id);
     else if (bottom.includes(id))
-        method([-13, -12, -11, -1, +1], i);
-    else method([-13, -12, -11, -1, +1, +11, +12, +13], i);
+        method([-13, -12, -11, -1, +1], id);
+    else method([-13, -12, -11, -1, +1, +11, +12, +13], id);
 }
 
 // shows incorrect pins at the end of the game
@@ -303,7 +318,8 @@ function onGoingTimer(){
         if (seconds === 59) {
             seconds = 0;
             minutes++;
-        } else seconds++;
+        } else if(minutes === 59 && seconds === 59) gameOverFromTooMuchTimePasses();
+        else seconds++;
     }
 }
 

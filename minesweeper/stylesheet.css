@@ -13,6 +13,7 @@ body {
     background-color: #23344b;
     display: grid;
     grid-auto-columns: 1fr 3fr;
+    pointer-events: none;
 }
 
 .divTable {
