@@ -29,8 +29,7 @@ function getNameFromColor(color) {
 function getInput() {
     for (let i = 1; i < 5; i++) {
         input[i - 1] = getNameFromColor(document.getElementById("color" + i).style.backgroundColor);
-        console.log(document.getElementById("color" + i).style.backgroundColor);
-    } console.log("input: " + input);
+    }
 }
 
 // check if user chose all 4 colors for a guess
@@ -44,7 +43,8 @@ function guessIsComplete() {
 // update on screen color for a given color guess
 function updateGuessedColor(color) {
     const index = checkNextOrder();
-    document.getElementById(index).style.backgroundColor = getColorFromName(color);
+    if(index === 'color1' || index === 'color2' || index === 'color3' || index === 'color4')
+        document.getElementById(index).style.backgroundColor = getColorFromName(color);
 }
 
 // check the next free guess space (if none update last)
@@ -103,14 +103,22 @@ function checkWinOrGameOver() {
         alert("YOU GOT IT!");
         document.getElementById('guess').style.visibility = 'hidden';
         displaySolution();
+        disableClicks();
     }
 
     else if(checkGameOver()) {
         alert("GAME OVER!");
         document.getElementById('guess').style.visibility = 'hidden';
         displaySolution();
+        disableClicks();
     }
 }
+
+// disables clicks on guess at the game over/win situations
+function disableClicks() {
+    document.getElementsByClassName('guessColors')[0].style.pointerEvents = 'none';
+}
+
 
 function displaySolution() {
     for (let i = 1; i < 5; i++) {
