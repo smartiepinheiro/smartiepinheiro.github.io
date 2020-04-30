@@ -25,15 +25,15 @@ Then the table could look something like this:
 | 🟣 ⚪ 🔴 ⚪  |       4      |      0     |
 
 ### Features
-✔️ Rules button;
-✔️ Random generated solution every time;
-✔️ Ability to edit guess by clicking on that cell and choosing another color;
-✔️ Checks if the guess if fully completed before accepting it;
-✔️ Guess updates the table accordingly;
-✔️ Game over after 8 wrong tries;
-✔️ Win after the guess equals the solution;
-✔️ Solution displayed at Game Over / Win situation;
-✔️ Play Again button that reloads the game;
-✔️ Responsive to window resize: allows horizontal/vertical play.
+✔️ Rules button;  
+✔️ Random generated solution every time;  
+✔️ Ability to edit guess by clicking on that cell and choosing another color;  
+✔️ Checks if the guess if fully completed before accepting it;  
+✔️ Guess updates the table accordingly;  
+✔️ Game over after 8 wrong tries;  
+✔️ Win after the guess equals the solution;  
+✔️ Solution displayed at Game Over / Win situation;  
+✔️ Play Again button that reloads the game;  
+✔️ Responsive to window resize: allows horizontal/vertical play.  
 
 ### Thank you so much for the time 🙋

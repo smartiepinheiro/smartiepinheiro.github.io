@@ -15,20 +15,20 @@ The numbers on the cells tells you **how many mines** that cell is touching (abo
 
 
 ### Features
-✔️ 'Show rules' button;
-✔️ Random generated mines every time;
-✔️ Ability to left-click to open a cell;
-✔️ Ability to right-click to pin a cell;
-✔️ Ability to un-pin a cell by right clicking it again;
-✔️ Ability to double-click a cell if the user believes they pinned all the mines next to it to open the surrounding cells;
-✔️ Game over when the user left clicks a mine;
-✔️ Game over when the user double clicks a cell and they had wrongly pinned the mines next to it;
-✔️ Win after the user either pins all the mines of left clicks all the non-mine cells;
-✔️ At game over shows a red cross on the wrong pinned mines and an explosion on the mine clicked;
-✔️ Disables table clicks at the end of the game;
-✔️ 'Current Time' timer, that starts with the first table click;
-✔️ 'Current Time' resets on every game;
-✔️ 'Highscore' time stored in the cookies, that updates and displays the user's fastest win time.
-✔️ Play Again button that reloads the game;
+✔️ 'Show rules' button;  
+✔️ Random generated mines every time;  
+✔️ Ability to left-click to open a cell;  
+✔️ Ability to right-click to pin a cell;  
+✔️ Ability to un-pin a cell by right clicking it again;  
+✔️ Ability to double-click a cell if the user believes they pinned all the mines next to it to open the surrounding cells;  
+✔️ Game over when the user left clicks a mine;  
+✔️ Game over when the user double clicks a cell and they had wrongly pinned the mines next to it;  
+✔️ Win after the user either pins all the mines of left clicks all the non-mine cells;  
+✔️ At game over shows a red cross on the wrong pinned mines and an explosion on the mine clicked;  
+✔️ Disables table clicks at the end of the game;  
+✔️ 'Current Time' timer, that starts with the first table click;  
+✔️ 'Current Time' resets on every game;  
+✔️ 'Highscore' time stored in the cookies, that updates and displays the user's fastest win time.  
+✔️ Play Again button that reloads the game;  
 
 ### Thank you so much for the time 🙋
