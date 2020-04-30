@@ -12,16 +12,18 @@
 body {
     background-color: #23344b;
     display: grid;
-    grid-auto-columns: 1fr 3fr;
     pointer-events: none;
+}
+
+.main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
 .divTable {
     display: table;
-    width: 100vh;
-    margin-left: 45%;
-    margin-top: 5%;
-    position: fixed;
+    width: 650px;
+    margin-top: 100px;
 }
 
 .divTableBody {
@@ -37,8 +39,8 @@ body {
     background-color: #6a8091;
     padding: 3px 10px;
     margin: 2px;
-    width: 4vh;
-    height: 4vh;
+    width: 30px;
+    height: 30px;
     line-height: 30px;
     text-align: center;
     vertical-align: middle;
@@ -49,10 +51,14 @@ body {
 }
 
 .playerButtons {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin: 40px 60px 0 60px;
-    align-items: normal;
+}
+
+#space {
+    width: 50px;
 }
 
 button {
@@ -60,7 +66,7 @@ button {
 }
 
 .titleAndOther {
-    margin: 15vh 120vh 5vh 13vh;
+    margin: 150px 100px 0 100px;
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
     line-height: 20px;
@@ -98,7 +104,7 @@ button {
     border: none;
     justify-content: center;
     border-radius: 10px;
-    width: 20vh;
+    width: 150px;
     margin: 10px 0 10px 0;
     padding: 15px 32px;
     text-align: center;
@@ -120,14 +126,13 @@ button {
     background-color: #afafaf;
     font-size: 14px;
     color: #23344b;
-    width: 60vh;
-    height: 30vh;
+    width: 460px;
     line-height: 30px;
     display: table;
     position: absolute;
     border-radius: 10px;
     margin: 0;
-    padding: 20px 30px 20px 30px;
+    padding: 20px 50px 20px 50px;
     z-index: 1;
     visibility: hidden;
 }
@@ -150,4 +155,23 @@ button:hover{
 
 button:focus {
     outline:0 !important;
+}
+
+@media only screen and (max-width: 1300px) {
+    .main {
+        grid-template-columns: 1fr;
+        margin: 0 auto;
+    }
+
+    .titleAndOther {
+        margin: 50px 100px 0 100px;
+    }
+
+    #timers {
+        margin-top: 80px;
+    }
+
+    #rules {
+        padding: 20px 15px 20px 15px;
+    }
 }

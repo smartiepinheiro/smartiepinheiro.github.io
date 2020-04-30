@@ -30,5 +30,6 @@ The numbers on the cells tells you **how many mines** that cell is touching (abo
 ✔️ 'Current Time' resets on every game;  
 ✔️ 'Highscore' time stored in the cookies, that updates and displays the user's fastest win time.  
 ✔️ Play Again button that reloads the game;  
+✔️ Responsive to window resize: allows horizontal/vertical play.
 
 ### Thank you so much for the time 🙋
