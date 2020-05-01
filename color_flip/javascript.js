@@ -180,11 +180,11 @@ function setUpHighScore() {
 }
 
 function setCookie(cookieValue) {
-    document.cookie = "highScore=" + cookieValue + ";" + "expires=Fri, 31 Dec 9999 23:59:59 GMT" + ";path=/color_flip";
+    document.cookie = "color-flip-high-score=" + cookieValue + ";" + "expires=Fri, 31 Dec 9999 23:59:59 GMT" + ";path=/color_flip";
 }
 
 function getCookie() {
-    const name = 'highScore=';
+    const name = 'color-flip-high-score=';
     const decodedCookie = decodeURIComponent(document.cookie);
     const ca = decodedCookie.split(';');
     for(let i = 0; i <ca.length; i++) {
@@ -192,6 +192,6 @@ function getCookie() {
         while (c.charAt(0) === ' ') {
             c = c.substring(1);
         } if (c.indexOf(name) === 0)
-            return (c.substring(name.length, c.length)).replace("highScore=", "");
+            return (c.substring(name.length, c.length)).replace("color-flip-high-score=", "");
     } return "";
 }
