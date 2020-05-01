@@ -129,6 +129,7 @@ function win() {
         alert("YOU JOB! YOU GOT IT!");
         time = !time;
         updateBestTime();
+        updateGamesWon();
         disableClicks();
     }
 }
@@ -166,25 +167,35 @@ function onGoingTimer(){
     }
 }
 
+function updateGamesWon() {
+    setCookie("color-flip-games-won=", parseInt(document.getElementById("gamesWon").innerText) + 1);
+    document.getElementById("gamesWon").innerText = getCookie("color-flip-games-won=");
+}
+
+function setUpGamesWon() {
+    if (getCookie("color-flip-games-won=") === '') setCookie("color-flip-games-won=", '0');
+    document.getElementById("gamesWon").innerText = getCookie("color-flip-games-won=");
+}
+
 function updateBestTime() {
     if(document.getElementById("bestTime").innerText === '00:00')
-        setCookie(document.getElementById("currentTime").innerText);
+        setCookie("color-flip-high-score=", document.getElementById("currentTime").innerText);
     else if(document.getElementById("currentTime").innerText < document.getElementById("bestTime").innerText) {
-        setCookie(document.getElementById("currentTime").innerText);
-    } document.getElementById("bestTime").innerText = getCookie();
+        setCookie("color-flip-high-score=", document.getElementById("currentTime").innerText);
+    } document.getElementById("bestTime").innerText = getCookie("color-flip-high-score=");
 }
 
 function setUpHighScore() {
-    if (getCookie() === '') setCookie('00:00');
-    document.getElementById("bestTime").innerText = getCookie();
+    if (getCookie("color-flip-high-score=") === '') setCookie("color-flip-high-score=", '00:00');
+    document.getElementById("bestTime").innerText = getCookie("color-flip-high-score=");
 }
 
-function setCookie(cookieValue) {
-    document.cookie = "color-flip-high-score=" + cookieValue + ";" + "expires=Fri, 31 Dec 9999 23:59:59 GMT" + ";path=/color_flip";
+function setCookie(cookie, cookieValue) {
+    document.cookie = cookie + cookieValue + ";" + "expires=Fri, 31 Dec 9999 23:59:59 GMT" + ";path=/color_flip";
 }
 
-function getCookie() {
-    const name = 'color-flip-high-score=';
+function getCookie(cookie) {
+    const name = cookie;
     const decodedCookie = decodeURIComponent(document.cookie);
     const ca = decodedCookie.split(';');
     for(let i = 0; i <ca.length; i++) {
@@ -192,6 +203,6 @@ function getCookie() {
         while (c.charAt(0) === ' ') {
             c = c.substring(1);
         } if (c.indexOf(name) === 0)
-            return (c.substring(name.length, c.length)).replace("color-flip-high-score=", "");
+            return (c.substring(name.length, c.length)).replace(cookie, "");
     } return "";
 }

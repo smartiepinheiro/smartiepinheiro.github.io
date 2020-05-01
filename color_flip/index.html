@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 </head>
 
-<body onload="setupCellColorAtStart(); randomStart(); setUpHighScore();">
+<body onload="setupCellColorAtStart(); randomStart(); setUpGamesWon(); setUpHighScore();">
 
 <div class="main">
     <div class="titleAndOther">
@@ -30,8 +30,10 @@
         </div>
 
         <div id="timers">
+            <div id="gamesWonTitle"><b>Games won:</b></div>
             <div id="currentTimeTitle"><b>Current Time:</b></div>
             <div id="bestTimeTitle"><b>Highscore:</b></div>
+            <div id="gamesWon">0</div>
             <div id="currentTime">00:00</div>
             <div id="bestTime">00:00</div>
         </div>
