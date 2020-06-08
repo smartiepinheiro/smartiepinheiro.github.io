@@ -102,34 +102,33 @@ function setupNumberCounters() {
 
     // top row
     for(let i = 2; i < 8; i++) {
-        counterLeftColumn(i);
-        document.getElementById("cell" + i).style.color = "white";
-        document.getElementById("cell" + i).style.fontSize = "30px";
-        document.getElementById("cell" + i).style.pointerEvents = 'none';
+        cellCounter(counterLeftColumn, i);
     }
 
     // left column
     for(let j = 8; j < 49; j+= 8) {
-        counterTopRow(j);
-        document.getElementById("cell" + j).style.color = "white";
-        document.getElementById("cell" + j).style.fontSize = "30px";
-        document.getElementById("cell" + j).style.pointerEvents = 'none';
+        cellCounter(counterTopRow, j);
     }
 
     // bottom row
     for(let k = 57; k < 63; k++) {
-        counterRightColumn(k);
-        document.getElementById("cell" + k).style.color = "white";
-        document.getElementById("cell" + k).style.fontSize = "30px";
-        document.getElementById("cell" + k).style.pointerEvents = 'none';
+        cellCounter(counterRightColumn, k);
     }
 
     // right column
     for(let l = 15; l < 63; l+= 8) {
-        counterBottomRow(l);
-        document.getElementById("cell" + l).style.color = "white";
-        document.getElementById("cell" + l).style.fontSize = "30px";
-        document.getElementById("cell" + l).style.pointerEvents = 'none';
+        cellCounter(counterBottomRow, l);
+    }
+}
+
+// aux for method above to remove duplication
+function cellCounter(counter, i){
+    // 60% change to show the border counter
+    if(Math.random() < 0.6) {
+        counter(i);
+        document.getElementById("cell" + i).style.color = "white";
+        document.getElementById("cell" + i).style.fontSize = "30px";
+        document.getElementById("cell" + i).style.pointerEvents = 'none';
     }
 }
 
@@ -206,7 +205,7 @@ function updateTable() {
 
 // hits given
 function hits() {
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 15; i++) {
         let row = Math.floor(Math.random() * 6);
         let column = Math.floor(Math.random() * 6);
 
