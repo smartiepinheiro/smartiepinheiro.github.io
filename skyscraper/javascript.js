@@ -3,11 +3,6 @@ function disableClicks() {
     document.getElementsByClassName('divTableBody')[0].style.pointerEvents = 'none';
 }
 
-// enable clicks after table is generated
-function enableClicks() {
-    document.body.style.pointerEvents = 'auto';
-}
-
 // show rules div
 let showRules = false;
 function rules() {
@@ -51,30 +46,36 @@ const solution = [[5, 6, 1, 4, 3, 2],
 
 // player's click
 function mouseDown(id) {
+    checkFirstClick();
     if(document.getElementById(id).innerText === "6") {
         document.getElementById(id).innerText = "0";
         document.getElementById(id).style.fontSize = "0";
         const index = findTableIndexFromId(id);
         playerTable[index[0]][index[1]] = 0;
-    }
-
-    else {
+    } else {
         document.getElementById(id).innerText = parseInt(document.getElementById(id).innerText) + 1;
         document.getElementById(id).style.color = "black";
         document.getElementById(id).style.fontSize = "30px";
         const index = findTableIndexFromId(id);
         playerTable[index[0]][index[1]] = parseInt(document.getElementById(id).innerText);
-    }
+    } checkWin();
+}
 
-    checkWin();
+// check if it's the first click so the timer starts
+function checkFirstClick() {
+    if(firstClick) {
+        firstClick = !firstClick;
+        time = !time;
+        setInterval(onGoingTimer, 1000);
+    }
 }
 
 // check if playerTable is equal to the solution
 function checkWin(){
     if(compareMatrix()) {
         alert("CONGRATS! YOU GOT IT!");
-        // updateGamesWon();
-        // updateBestTime();
+        updateGamesWon();
+        updateBestTime();
         disableClicks();
     }
 }
@@ -274,6 +275,7 @@ function gameOverFromTooMuchTimePasses() {
     alert("GAME OVER");
     time = !time;
     disableClicks();
+    end();
 }
 
 // timer logic
