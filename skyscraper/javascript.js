@@ -24,14 +24,16 @@ function rules() {
 let firstClick = true;
 
 const topRow = [2, 3, 4, 5, 6, 7];
-const leftColumn = [8, 15, 22, 29, 36, 43];
+const bottomRow = [57, 58, 59, 60, 61, 62];
+const leftColumn = [8, 16, 24, 32, 40, 48];
+const rightColumn = [15, 23, 31, 39, 47, 55];
 
 const tableIndex = [[9, 10, 11, 12, 13, 14],
-                    [16, 17, 18, 19, 20, 21],
-                    [23, 24, 25, 26, 27, 28],
-                    [30, 31, 32, 33, 34, 35],
-                    [37, 38, 39, 40, 41, 42],
-                    [44, 45, 46, 47, 48, 49]];
+                    [17, 18, 19, 20, 21, 22],
+                    [25, 26, 27, 28, 29, 30],
+                    [33, 34, 35, 36, 37, 38],
+                    [41, 42, 43, 44, 45, 46],
+                    [49, 50, 51, 52, 53, 54]];
 
 const playerTable = [[0, 0, 0, 0, 0, 0],
                     [0, 0, 0, 0, 0, 0],
@@ -98,25 +100,41 @@ function findTableIndexFromId(id) {
 // color all the cells
 function setupNumberCounters() {
 
-    // first row
+    // top row
     for(let i = 2; i < 8; i++) {
-        checkColumn(i);
+        counterLeftColumn(i);
         document.getElementById("cell" + i).style.color = "white";
         document.getElementById("cell" + i).style.fontSize = "30px";
         document.getElementById("cell" + i).style.pointerEvents = 'none';
     }
 
-    // first column
-    for(let j = 8; j < 50; j+= 7) {
-        checkRow(j);
+    // left column
+    for(let j = 8; j < 49; j+= 8) {
+        counterTopRow(j);
         document.getElementById("cell" + j).style.color = "white";
         document.getElementById("cell" + j).style.fontSize = "30px";
         document.getElementById("cell" + j).style.pointerEvents = 'none';
     }
+
+    // bottom row
+    for(let k = 57; k < 63; k++) {
+        counterRightColumn(k);
+        document.getElementById("cell" + k).style.color = "white";
+        document.getElementById("cell" + k).style.fontSize = "30px";
+        document.getElementById("cell" + k).style.pointerEvents = 'none';
+    }
+
+    // right column
+    for(let l = 15; l < 63; l+= 8) {
+        counterBottomRow(l);
+        document.getElementById("cell" + l).style.color = "white";
+        document.getElementById("cell" + l).style.fontSize = "30px";
+        document.getElementById("cell" + l).style.pointerEvents = 'none';
+    }
 }
 
-// aux for method above
-function checkRow(cell) {
+// aux for method above ( counter for top row )
+function counterTopRow(cell) {
     let towersSeen = 1;
     let index = leftColumn.indexOf(cell);
     let bigger = solution[index][0];
@@ -128,12 +146,38 @@ function checkRow(cell) {
     } document.getElementById("cell" + cell).innerText = towersSeen.toString();
 }
 
-// aux for method above
-function checkColumn(cell){
+// aux for method above ( counter for left column )
+function counterLeftColumn(cell){
     let towersSeen = 1;
     let index = topRow.indexOf(cell);
     let bigger = solution[0][index];
     for(let i = 1; i < 6; i++){
+        if (solution[i][index] > bigger){
+            towersSeen++;
+            bigger = solution[i][index];
+        }
+    } document.getElementById("cell" + cell).innerText = towersSeen.toString();
+}
+
+// aux for method above ( counter for bottom row )
+function counterBottomRow(cell) {
+    let towersSeen = 1;
+    let index = rightColumn.indexOf(cell);
+    let bigger = solution[index][5];
+    for(let i = 5; i >= 0; i--){
+        if (solution[index][i] > bigger){
+            towersSeen++;
+            bigger = solution[index][i];
+        }
+    } document.getElementById("cell" + cell).innerText = towersSeen.toString();
+}
+
+// aux for method above ( counter for right column )
+function counterRightColumn(cell) {
+    let towersSeen = 1;
+    let index = bottomRow.indexOf(cell);
+    let bigger = solution[5][index];
+    for(let i = 5; i >= 0; i--){
         if (solution[i][index] > bigger){
             towersSeen++;
             bigger = solution[i][index];
