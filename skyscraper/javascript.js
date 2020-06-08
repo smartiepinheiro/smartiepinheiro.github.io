@@ -77,6 +77,7 @@ function checkWin(){
         updateGamesWon();
         updateBestTime();
         disableClicks();
+        time = !time;
     }
 }
 
