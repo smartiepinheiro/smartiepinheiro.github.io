@@ -72,7 +72,7 @@ function checkFirstClick() {
 
 // check if playerTable is equal to the solution
 function checkWin(){
-    if(compareMatrix()) {
+    if(evaluatePlayerTable()) {
         alert("CONGRATS! YOU GOT IT!");
         updateGamesWon();
         updateBestTime();
@@ -81,13 +81,105 @@ function checkWin(){
     }
 }
 
-// compare playerTable matrix to solution matrix
-function compareMatrix(){
-    for (let i = 0; i < solution.length; i++) {
-        for (let j = 0; j < solution[0].length; j++) {
-            if(playerTable[i][j] !== solution[i][j]) return false;
-        }
-    } return true;
+// check if the player completed the table correctly :
+// since some of the counters on the outside rows/columns are omitted that opens the door for different ways
+// to complete the table so we can't, unfortunately, simply compare the playerTable to the solution table
+function evaluatePlayerTable(){
+
+    // top row
+    for(let i = 0; i < 6; i++) {
+        let towersSeen = 1;
+        let numbersSeen = [];
+        let bigger = playerTable[0][i];
+        for(let i1 = 0; i1 < 6; i1 ++){
+            if(playerTable[i1][i] === 0) return false;
+
+            else {
+                if(!numbersSeen.includes(playerTable[i1][i])) {
+                    numbersSeen.push(playerTable[i1][i]);
+                    if (playerTable[i1][i] > bigger){
+                        towersSeen++;
+                        bigger = playerTable[i1][i];
+                        console.log(bigger);
+                    }
+                } else return false;
+            }
+
+        } if(document.getElementById("cell" + topRow[i]).innerText !== "" &&
+            towersSeen.toString() !== document.getElementById("cell" + topRow[i]).innerText)
+            return false;
+    }
+
+    // left column
+    for(let j = 0; j < 6; j++) {
+        let towersSeen = 1;
+        let numbersSeen = [];
+        let bigger = playerTable[j][0];
+        for (let j1 = 0; j1 < 6; j1++) {
+            if(playerTable[j][j1] === 0) return false;
+
+            else{
+                if (!numbersSeen.includes(playerTable[j][j1])) {
+                    numbersSeen.push(playerTable[j][j1]);
+                    if (playerTable[j][j1] > bigger) {
+                        towersSeen++;
+                        bigger = playerTable[j][j1];
+                    }
+                } else return false;
+            }
+        } if (document.getElementById("cell" + leftColumn[j]).innerText !== "" &&
+            towersSeen.toString() !== document.getElementById("cell" + leftColumn[j]).innerText)
+            return false;
+    }
+
+    // bottom row
+    for(let k = 0; k < 6; k++) {
+        let towersSeen = 1;
+        let numbersSeen = [];
+        let bigger = playerTable[5][k];
+        for(let k1 = 5; k1 >= 0; k1--){
+            if(playerTable[k1][k] === 0) return false;
+
+            else{
+                if (!numbersSeen.includes(playerTable[k1][k])) {
+                    numbersSeen.push(playerTable[k1][k]);
+                    if (playerTable[k1][k] > bigger) {
+                        towersSeen++;
+                        bigger = playerTable[k1][k];
+                    }
+                } else return false;
+            }
+
+        } if(document.getElementById("cell" + bottomRow[k]).innerText !== "" &&
+            towersSeen.toString() !== document.getElementById("cell" + bottomRow[k]).innerText)
+            return false;
+    }
+
+    // right column
+    for(let l = 0; l < 6; l++) {
+        let towersSeen = 1;
+        let numbersSeen = [];
+        let bigger = playerTable[l][5];
+        for(let l1 = 5; l1 >= 0; l1--){
+            if(playerTable[l][l1] === 0) return false;
+
+            else{
+                if (!numbersSeen.includes(playerTable[l][l1])) {
+                    numbersSeen.push(playerTable[l][l1]);
+                    if (playerTable[l][l1] > bigger) {
+                        towersSeen++;
+                        bigger = playerTable[l][l1];
+                    }
+                } else return false;
+            }
+
+        } if(document.getElementById("cell" + rightColumn[l]).innerText !== "" &&
+            towersSeen.toString() !== document.getElementById("cell" + rightColumn[l]).innerText)
+            return false;
+    }
+
+    // if non of the previous cycles fail in means the table is correctly filled
+    return true;
 }
 
 // find index of an id on table index so it's value can be updated
@@ -191,7 +283,7 @@ function tableGenerator() {
     randomizeTable();
     updateTable();
     setupNumberCounters();
-    hits();
+    hints();
 }
 
 function updateTable() {
@@ -206,7 +298,7 @@ function updateTable() {
 }
 
 // hits given
-function hits() {
+function hints() {
     for (let i = 0; i < 15; i++) {
         let row = Math.floor(Math.random() * 6);
         let column = Math.floor(Math.random() * 6);
