@@ -100,7 +100,6 @@ function evaluatePlayerTable(){
                     if (playerTable[i1][i] > bigger){
                         towersSeen++;
                         bigger = playerTable[i1][i];
-                        console.log(bigger);
                     }
                 } else return false;
             }
@@ -178,11 +177,11 @@ function evaluatePlayerTable(){
             return false;
     }
 
-    // if non of the previous cycles fail in means the table is correctly filled
+    // if non of the previous cycles fail in means the table is completely and correctly filled
     return true;
 }
 
-// find index of an id on table index so it's value can be updated
+// find index of an id on the table index so its value can be updated
 function findTableIndexFromId(id) {
     for (let i = 0; i < tableIndex.length; i++) {
         for (let j = 0; j < tableIndex[0].length; j++) {
@@ -191,7 +190,7 @@ function findTableIndexFromId(id) {
     }
 }
 
-// color all the cells
+// set up border cells
 function setupNumberCounters() {
 
     // top row
@@ -286,6 +285,7 @@ function tableGenerator() {
     hints();
 }
 
+//
 function updateTable() {
     for(let i = 0; i < solution.length; i++) {
         for(let j = 0; j < solution[0].length; j++) {
@@ -297,7 +297,7 @@ function updateTable() {
     }
 }
 
-// hits given
+// hits given aka numbers already filled at the beginning of the game
 function hints() {
     for (let i = 0; i < 15; i++) {
         let row = Math.floor(Math.random() * 6);
@@ -314,7 +314,6 @@ function hints() {
 
 // switch around some rows/columns so there's a new random but working solution every time
 function randomizeTable() {
-
     for (let i = 0; i < 10; i++) {
         // switch 2 rows
         let possibilities = [0, 1, 2, 3, 4, 5];
@@ -340,6 +339,7 @@ function randomizeTable() {
     }
 }
 
+// turn a column to an array
 function columnToArray(index) {
     let array = [];
     for (let i = 0; i < solution.length; i++) {
@@ -347,6 +347,7 @@ function columnToArray(index) {
     } return array;
 }
 
+// aux function to switch 2 columns
 function changeColumn(index, array) {
     for (let i = 0; i < solution.length; i++) {
         solution[i][index] = array[i];
@@ -364,6 +365,7 @@ function end() {
     }
 }
 
+// game over when time hits 59:59
 function gameOverFromTooMuchTimePasses() {
     alert("GAME OVER");
     time = !time;
@@ -371,7 +373,7 @@ function gameOverFromTooMuchTimePasses() {
     end();
 }
 
-// timer logic
+// beginning of the timer logic
 let seconds = 1;
 let minutes = 0;
 let secondsToText = "";
@@ -398,6 +400,7 @@ function onGoingTimer(){
     }
 }
 
+// beginning of the games won logic
 function updateGamesWon() {
     setCookie("skyscraper-games-won=", parseInt(document.getElementById("gamesWon").innerText) + 1);
     document.getElementById("gamesWon").innerText = getCookie("skyscraper-games-won=");
@@ -408,6 +411,7 @@ function setUpGamesWon() {
     document.getElementById("gamesWon").innerText = getCookie("skyscraper-games-won=");
 }
 
+// beginning of the best time logic
 function updateBestTime() {
     if(document.getElementById("bestTime").innerText === '00:00')
         setCookie("skyscraper-high-score=", document.getElementById("currentTime").innerText);
@@ -421,6 +425,7 @@ function setUpHighScore() {
     document.getElementById("bestTime").innerText = getCookie("skyscraper-high-score=");
 }
 
+// beginning of the cookies logic
 function setCookie(cookie, cookieValue) {
     document.cookie = cookie + cookieValue + ";" + "expires=Fri, 31 Dec 9999 23:59:59 GMT" + ";path=/skyscraper";
 }
