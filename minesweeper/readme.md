@@ -10,9 +10,13 @@ For the unfamiliar the goal of **Minesweeper** is to locate all of the **20 hidd
 The numbers on the cells tells you **how many mines** that cell is touching (above, below, left, right, and all 4 diagonals). 
 - **Left click** on a cell if you believe it doesn't hold a mine.
 - **Right click** on a cell if you believe it does hold a mine to **pin** it.
+- **Double click** on a cell if you believe you already pinned all the adjacent mines to uncover the rest.  
 - You **lose** when a cell that you left click open contains a mine.
 - You **win** if you either pin all the mines or left click on all the non-mine cells.
 
+You can see an example of a mini try here:  
+
+![alt-text](https://imgur.com/EhNcmye.gif)
 
 ### Features
 ✔️ 'Show rules' button;  
