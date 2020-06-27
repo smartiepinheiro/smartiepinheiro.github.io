@@ -36,4 +36,6 @@ Then the table could look something like this:
 ✔️ Play Again button that reloads the game;  
 ✔️ Responsive to window resize: allows horizontal/vertical play.  
 
+*Big shoutout to my friend [Alexandre Oliveira](https://bitbucket.org/AlexandreOliveira96/) for always so happily and intensely testing all my stuff*  ♡ 
+
 ### Thank you so much for the time 🙋
