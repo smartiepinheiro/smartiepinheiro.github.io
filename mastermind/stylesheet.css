@@ -18,16 +18,14 @@ body {
 #rules {
     font-family: 'Roboto', sans-serif;
     background-color: #9b4646;
-    font-size: 16px;
-    line-height: 30px;
+    font-size: 14px;
+    line-height: 20px;
     color: #cdcdcd;
     width: 35%;
-    height: 50vh;
     display: table;
     position: absolute;
     border-radius: 10px;
-    margin: 0 0 0 0;
-    padding: 40px 20px 20px 20px;
+    padding: 20px;
     z-index: 1;
     visibility: hidden;
 }
@@ -199,27 +197,6 @@ button:focus {
 #color4 {background-color: white;}
 
 @media only screen and (max-width: 1000px) {
-    .button, .buttonGuess {
-        padding: 15px 15px;
-        margin: 5px 5px;
-        height: 40px;
-        width: 40px;
-    }
-
-    .divTable {
-        width: 350px;
-    }
-
-    .divTableCell, .divTableHead {
-        height: 35px;
-    }
-
-    #rules {
-        width: 70vh;
-    }
-}
-
-@media only screen and (max-width: 750px) {
     body {
         display: flex;
         flex-direction: column;
@@ -237,13 +214,12 @@ button:focus {
     }
 
     #rules {
-        width: 80%;
-        height: 55vh;
+        width: 60%;
         display: table;
         position: absolute;
         border-radius: 10px;
         margin: 0 auto;
-        padding: 40px 20px 20px 20px;
+        margin-left: 10%;
         z-index: 1;
         visibility: hidden;
     }
