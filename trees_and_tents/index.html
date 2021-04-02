@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>trees & tents</title>
+    <link rel="stylesheet" href="stylesheet.css">
+    <script src="javascript.js" type="text/javascript"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body onload="tableGenerator(); setUpGamesWon(); setUpHighScore()">
+
+<div class="main">
+    <div class="titleAndOther">
+        <div id="title"><b>Trees and tents</b></div>
+
+        <div class="playerButtons">
+            <button id="rulesButton" onclick="rules()">Show rules</button>
+            <div id="space"></div>
+            <button id="playAgain" onclick="window.location.reload()">Play again</button>
+        </div>
+
+        <div id="rules">
+            <!-- TODO change rules -->
+            <div class="rulesText"> There are <b>12 trees</b> on a campsite. You, as a campsite manager, must <b>find a spot for each tent</b> that meets the following <b>requirements:</b> </div>
+            <div class="spaceRules"></div>
+            <div class="rulesText"><b>1</b>. A tree must be immediately next to each tent (diagonal is not allowed).</div>
+            <div class="rulesText"><b>2</b>. In total there are as many tents as trees. So every tent has its own tree.</div>
+            <div class="rulesText"><b>3</b>. A tent can make contact with multiple trees, but is only connected to one.</div>
+            <div class="rulesText"><b>4</b>. The numbers outside indicate how many tents there are in that row/column.</div>
+            <div class="rulesText"><b>5</b>. Tents never touch each other: neither horizontally nor vertically nor diagonally.</div>
+            <div class="spaceRules"></div>
+            <div class="rulesText"> <b>Click once</b> to make the cell green if you believe a tent can't be placed there.</div>
+            <div class="rulesText"> <b>Click a second time</b> to place a tent. <b>And a third</b> to go back to a blank.</div>
+        </div>
+
+        <div id="timers">
+            <div id="gamesWonTitle"><b>Games won:</b></div>
+            <div id="currentTimeTitle"><b>Current Time:</b></div>
+            <div id="bestTimeTitle"><b>Highscore:</b></div>
+            <div id="gamesWon">0</div>
+            <div id="currentTime">00:00</div>
+            <div id="bestTime">00:00</div>
+        </div>
+
+    </div>
+
+    <div class="divTable">
+        <div class="divTableBody">
+            <div class="divTableRow">
+                <div class="hintCell" id="cell1"></div>
+                <div class="hintCell" id="cell2"></div>
+                <div class="hintCell" id="cell3"></div>
+                <div class="hintCell" id="cell4"></div>
+                <div class="hintCell" id="cell5"></div>
+                <div class="hintCell" id="cell6"></div>
+                <div class="hintCell" id="cell7"></div>
+                <div class="hintCell" id="cell8"></div>
+                <div class="hintCell" id="cell9"></div>
+            </div>
+            <div class="divTableRow">
+                <div class="hintCell" id="cell10"></div>
+                <div class="divTableCell" id="cell11" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell12" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell13" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell14" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell15" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell16" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell17" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell18" onmousedown="mouseDown(id)"></div>
+            </div>
+            <div class="divTableRow">
+                <div class="hintCell" id="cell19"></div>
+                <div class="divTableCell" id="cell20" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell21" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell22" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell23" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell24" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell25" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell26" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell27" onmousedown="mouseDown(id)"></div>
+            </div>
+            <div class="divTableRow">
+                <div class="hintCell" id="cell28"></div>
+                <div class="divTableCell" id="cell29" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell30" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell31" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell32" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell33" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell34" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell35" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell36" onmousedown="mouseDown(id)"></div>
+            </div>
+            <div class="divTableRow">
+                <div class="hintCell" id="cell37"></div>
+                <div class="divTableCell" id="cell38" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell39" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell40" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell41" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell42" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell43" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell44" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell45" onmousedown="mouseDown(id)"></div>
+            </div>
+            <div class="divTableRow">
+                <div class="hintCell" id="cell46"></div>
+                <div class="divTableCell" id="cell47" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell48" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell49" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell50" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell51" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell52" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell53" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell54" onmousedown="mouseDown(id)"></div>
+            </div>
+            <div class="divTableRow">
+                <div class="hintCell" id="cell55"></div>
+                <div class="divTableCell" id="cell56" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell57" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell58" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell59" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell60" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell61" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell62" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell63" onmousedown="mouseDown(id)"></div>
+            </div>
+            <div class="divTableRow">
+                <div class="hintCell" id="cell64"></div>
+                <div class="divTableCell" id="cell65" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell66" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell67" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell68" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell69" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell70" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell71" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell72" onmousedown="mouseDown(id)"></div>
+            </div>
+            <div class="divTableRow">
+                <div class="hintCell" id="cell73"></div>
+                <div class="divTableCell" id="cell74" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell75" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell76" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell77" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell78" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell79" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell80" onmousedown="mouseDown(id)"></div>
+                <div class="divTableCell" id="cell81" onmousedown="mouseDown(id)"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
