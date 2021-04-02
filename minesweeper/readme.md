@@ -1,5 +1,5 @@
 # **Minesweeper**
-Game development has forever been a passion of mine. This is just a small side project I made trying to replicate an old favorite of mine and improve my HTML/CSS/JS skills, as a recent Dev Student.
+Logic games have forever been a passion of mine. This is just a small side project I made trying to replicate an old favorite of mine and improve my HTML/CSS/JS skills, as a recent Dev Student.
 
 You can give it a try at https://smartiepinheiro.github.io/minesweeper/
 
