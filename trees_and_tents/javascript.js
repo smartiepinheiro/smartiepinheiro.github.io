@@ -220,6 +220,8 @@ function randomizeTreePlacement(row, column) {
         document.getElementById("cell" + tableIndex[row][column - 1]).style.pointerEvents = 'none';
         document.getElementById("cell" + tableIndex[row][column - 1]).style.backgroundColor = "rgb(50,125,63)";
     }
+
+    else randomizeTreePlacement(row, column);
 }
 
 // hits given aka white numbers on the borders
