@@ -70,32 +70,46 @@ function checkFirstClick() {
 
 // check if the player's table is solved
 function checkWin() {
-    console.log(hasAtLeastOneTent(1, 1))
-    if (evaluatetableIndex()) {
+    if (evaluateTable()) {
         alert("CONGRATS! YOU GOT IT!");
         updateGamesWon();
         updateBestTime();
         disableClicks();
+        turnCellsAllGreenOnWin()
         time = !time;
+    }
+}
+
+// check if there's 2 tents touching
+function turnCellsAllGreenOnWin() {
+    for (let row = 0; row < topRow.length; row++) {
+        for (let column = 0; column < leftColumn.length; column++) {
+            if (document.getElementById("cell" + tableIndex[row][column]).style.backgroundColor !== "rgb(50,125,63)") {
+                document.getElementById("cell" + tableIndex[row][column]).style.backgroundColor = "rgb(50,125,63)";
+            }
+        }
     }
 }
 
 // check if the player completed the table correctly :
 // there might be different ways to complete the table correctly 
 // so we can't, unfortunately, simply compare the tableIndex to the "solution"
-function evaluatetableIndex() {
+function evaluateTable() {
 
     // top row
     for (let column = 0; column < topRow.length; column++) {
         let tentsSeen = 0;
         for (let row = 0; row < topRow.length; row++) {
-            if (document.getElementById("cell" + tableIndex[row][column]).innerText === "🏕️"
-                && noSurroundingTents(row, column)) {
-                tentsSeen++;
-            }
-            else if (document.getElementById("cell" + tableIndex[row][column]).innerText === "🌲"
+            if (document.getElementById("cell" + tableIndex[row][column]).innerText === "🌲"
                 && !hasAtLeastOneTent(row, column)) {
                 return false;
+            }
+            else if (document.getElementById("cell" + tableIndex[row][column]).innerText === "🏕️"
+                && !noSurroundingTents(row, column)) {
+                return false;
+            }
+            else if (document.getElementById("cell" + tableIndex[row][column]).innerText === "🏕️") {
+                tentsSeen++;
             }
         }
 
@@ -108,13 +122,16 @@ function evaluatetableIndex() {
     for (let row = 0; row < leftColumn.length; row++) {
         let tentsSeen = 0;
         for (let column = 0; column < leftColumn.length; column++) {
-            if (document.getElementById("cell" + tableIndex[row][column]).innerText === "🏕️"
-                && noSurroundingTents(row, column)) {
-                tentsSeen++;
-            }
-            else if (document.getElementById("cell" + tableIndex[row][column]).innerText === "🌲"
+            if (document.getElementById("cell" + tableIndex[row][column]).innerText === "🌲"
                 && !hasAtLeastOneTent(row, column)) {
                 return false;
+            }
+            else if (document.getElementById("cell" + tableIndex[row][column]).innerText === "🏕️"
+                && !noSurroundingTents(row, column)) {
+                return false;
+            }
+            else if (document.getElementById("cell" + tableIndex[row][column]).innerText === "🏕️") {
+                tentsSeen++;
             }
         }
 
@@ -160,6 +177,19 @@ function tableGenerator() {
     hints();
 }
 
+// just for testing, deleting soon
+function numberOfTrees() {
+    let numberOfTrees = 0;
+    for (let rowIndex = 0; rowIndex < 8; rowIndex++) {
+        for (let columnIndex = 0; columnIndex < 8; columnIndex++) {
+            if (document.getElementById("cell" + tableIndex[rowIndex][columnIndex]).innerText === "🌲") {
+                numberOfTrees++;
+            }
+        }
+    } return numberOfTrees;
+}
+
+// randomize a correct placement for the tents
 function randomizeTentPlacement() {
     for (let i = 0; i < 12; i++) {
         let row = Math.floor(Math.random() * 8);
@@ -175,15 +205,17 @@ function randomizeTentPlacement() {
 function noSurroundingTents(row, column) {
     for (let rowIndex = -1; rowIndex <= 1; rowIndex++) {
         for (let columnIndex = -1; columnIndex <= 1; columnIndex++) {
-            if (auxTable[row + rowIndex] !== undefined && auxTable[row + rowIndex][column + columnIndex] !== undefined
-                && document.getElementById("cell" + tableIndex[row][column]) !== "🌲"
-                && auxTable[row + rowIndex][column + columnIndex] === "🏕️") {
-                return false;
+            if (rowIndex !== 0 || columnIndex !== 0) {
+                if (auxTable[row + rowIndex] !== undefined && auxTable[row + rowIndex][column + columnIndex] !== undefined
+                    && auxTable[row + rowIndex][column + columnIndex] === "🏕️") {
+                    return false;
+                }
             }
         }
     } return true;
 }
 
+// like the name suggests it randomizes the placement of a tree given a tent
 function randomizeTreePlacement(row, column) {
     let options = ["up", "right", "down", "left"];
     if (row === 0) options.splice(options.indexOf("up"), 1);
@@ -193,35 +225,37 @@ function randomizeTreePlacement(row, column) {
 
     let treeDirection = Math.floor(Math.random() * options.length);
 
-    if (options[treeDirection] === "up" && tableIndex[row - 1] !== undefined
-        && document.getElementById("cell" + tableIndex[row - 1][column]) !== "🌲") {
-        document.getElementById("cell" + tableIndex[row - 1][column]).innerText = "🌲";
-        document.getElementById("cell" + tableIndex[row - 1][column]).style.pointerEvents = 'none';
-        document.getElementById("cell" + tableIndex[row - 1][column]).style.backgroundColor = "rgb(50,125,63)";
+    if (options[treeDirection] === "up") {
+        if (tableIndex[row - 1] !== undefined && document.getElementById("cell" + tableIndex[row - 1][column]).innerText !== "🌲") {
+            document.getElementById("cell" + tableIndex[row - 1][column]).innerText = "🌲";
+            document.getElementById("cell" + tableIndex[row - 1][column]).style.pointerEvents = 'none';
+            document.getElementById("cell" + tableIndex[row - 1][column]).style.backgroundColor = "rgb(50,125,63)";
+        } else randomizeTreePlacement(row, column);
     }
 
-    else if (options[treeDirection] === "right" && tableIndex[row][column + 1] !== undefined
-        && document.getElementById("cell" + tableIndex[row][column + 1]) !== "🌲") {
-        document.getElementById("cell" + tableIndex[row][column + 1]).innerText = "🌲";
-        document.getElementById("cell" + tableIndex[row][column + 1]).style.pointerEvents = 'none';
-        document.getElementById("cell" + tableIndex[row][column + 1]).style.backgroundColor = "rgb(50,125,63)";
+    else if (options[treeDirection] === "right") {
+        if (tableIndex[row][column + 1] !== undefined && document.getElementById("cell" + tableIndex[row][column + 1]).innerText !== "🌲") {
+            document.getElementById("cell" + tableIndex[row][column + 1]).innerText = "🌲";
+            document.getElementById("cell" + tableIndex[row][column + 1]).style.pointerEvents = 'none';
+            document.getElementById("cell" + tableIndex[row][column + 1]).style.backgroundColor = "rgb(50,125,63)";
+        } else randomizeTreePlacement(row, column);
     }
 
-    else if (options[treeDirection] === "down" && tableIndex[row + 1] !== undefined
-        && document.getElementById("cell" + tableIndex[row + 1][column]) !== "🌲") {
-        document.getElementById("cell" + tableIndex[row + 1][column]).innerText = "🌲";
-        document.getElementById("cell" + tableIndex[row + 1][column]).style.pointerEvents = 'none';
-        document.getElementById("cell" + tableIndex[row + 1][column]).style.backgroundColor = "rgb(50,125,63)";
+    else if (options[treeDirection] === "down") {
+        if (tableIndex[row + 1] !== undefined && document.getElementById("cell" + tableIndex[row + 1][column]).innerText !== "🌲") {
+            document.getElementById("cell" + tableIndex[row + 1][column]).innerText = "🌲";
+            document.getElementById("cell" + tableIndex[row + 1][column]).style.pointerEvents = 'none';
+            document.getElementById("cell" + tableIndex[row + 1][column]).style.backgroundColor = "rgb(50,125,63)";
+        } else randomizeTreePlacement(row, column);
     }
 
-    else if (options[treeDirection] === "left" && tableIndex[row][column - 1] !== undefined
-        && document.getElementById("cell" + tableIndex[row][column - 1]) !== "🌲") {
-        document.getElementById("cell" + tableIndex[row][column - 1]).innerText = "🌲";
-        document.getElementById("cell" + tableIndex[row][column - 1]).style.pointerEvents = 'none';
-        document.getElementById("cell" + tableIndex[row][column - 1]).style.backgroundColor = "rgb(50,125,63)";
+    else if (options[treeDirection] === "left") {
+        if (tableIndex[row][column - 1] !== undefined && document.getElementById("cell" + tableIndex[row][column - 1]).innerText !== "🌲") {
+            document.getElementById("cell" + tableIndex[row][column - 1]).innerText = "🌲";
+            document.getElementById("cell" + tableIndex[row][column - 1]).style.pointerEvents = 'none';
+            document.getElementById("cell" + tableIndex[row][column - 1]).style.backgroundColor = "rgb(50,125,63)";
+        } else randomizeTreePlacement(row, column);
     }
-
-    else randomizeTreePlacement(row, column);
 }
 
 // hits given aka white numbers on the borders
@@ -244,8 +278,6 @@ function hints() {
         document.getElementById("cell" + leftColumn[i]).style.pointerEvents = 'none';
         document.getElementById("cell" + leftColumn[i]).style.backgroundColor = 'transparent';
     }
-
-    cleanAuxTable();
 }
 
 // aux of above
@@ -266,14 +298,6 @@ function numberOfTentsOnColumn(column) {
             numberOfTents++;
         }
     } return numberOfTents;
-}
-
-function cleanAuxTable() {
-    for (let i = 0; i < auxTable.length; i++) {
-        for (let j = 0; j < auxTable[0].length; j++) {
-            auxTable[i][j] = 0;
-        }
-    }
 }
 
 // game over when time hits 59:59
