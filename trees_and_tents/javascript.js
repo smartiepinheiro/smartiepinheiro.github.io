@@ -205,14 +205,18 @@ function randomizeTentPlacement() {
 function noSurroundingTents(row, column) {
     for (let rowIndex = -1; rowIndex <= 1; rowIndex++) {
         for (let columnIndex = -1; columnIndex <= 1; columnIndex++) {
-            if (rowIndex !== 0 || columnIndex !== 0) {
-                if (auxTable[row + rowIndex] !== undefined && auxTable[row + rowIndex][column + columnIndex] !== undefined
-                    && auxTable[row + rowIndex][column + columnIndex] === "🏕️") {
-                    return false;
-                }
+            console.log(rowIndex + " / " + columnIndex)
+            if (rowIndex === 0 && columnIndex === 0) {
+                continue;
+            }
+            else if (auxTable[row + rowIndex] !== undefined
+                && auxTable[row + rowIndex][column + columnIndex] !== undefined
+                && auxTable[row + rowIndex][column + columnIndex] === "🏕️") {
+                return false;
             }
         }
-    } return true;
+    }
+    return true;
 }
 
 // like the name suggests it randomizes the placement of a tree given a tent
