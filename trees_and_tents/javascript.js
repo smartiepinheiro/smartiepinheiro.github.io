@@ -203,17 +203,13 @@ function randomizeTentPlacement() {
 
 // check if any of the surrounding cells already have tents placed
 function noSurroundingTents(row, column) {
-    for (let rowIndex = -1; rowIndex <= 1; rowIndex++) {
-        for (let columnIndex = -1; columnIndex <= 1; columnIndex++) {
-            console.log(rowIndex + " / " + columnIndex)
-            if (rowIndex === 0 && columnIndex === 0) {
-                continue;
-            }
-            else if (auxTable[row + rowIndex] !== undefined
-                && auxTable[row + rowIndex][column + columnIndex] !== undefined
-                && auxTable[row + rowIndex][column + columnIndex] === "🏕️") {
-                return false;
-            }
+    const variations = [[-1,-1],[-1,0],[-1,1],[0,-1],[0,1],[1,-1],[1,0],[1,1]];
+
+    for(let i = 0; i < variations.length; i++) {
+        if (auxTable[row + variations[i][0]] !== undefined
+            && auxTable[row + variations[i][0]][column + variations[i][1]] !== undefined
+            && auxTable[row + variations[i][0]][column + variations[i][1]] === "🏕️") {
+            return false;
         }
     }
     return true;
@@ -221,15 +217,10 @@ function noSurroundingTents(row, column) {
 
 // like the name suggests it randomizes the placement of a tree given a tent
 function randomizeTreePlacement(row, column) {
-    let options = ["up", "right", "down", "left"];
-    if (row === 0) options.splice(options.indexOf("up"), 1);
-    if (row === 7) options.splice(options.indexOf("down"), 1);
-    if (column === 0) options.splice(options.indexOf("left"), 1);
-    if (column === 7) options.splice(options.indexOf("right"), 1);
+    let treeDirection = Math.floor(Math.random() * 4);
+    console.log(treeDirection);
 
-    let treeDirection = Math.floor(Math.random() * options.length);
-
-    if (options[treeDirection] === "up") {
+    if (treeDirection === 0) {
         if (tableIndex[row - 1] !== undefined && document.getElementById("cell" + tableIndex[row - 1][column]).innerText !== "🌲") {
             document.getElementById("cell" + tableIndex[row - 1][column]).innerText = "🌲";
             document.getElementById("cell" + tableIndex[row - 1][column]).style.pointerEvents = 'none';
@@ -237,7 +228,7 @@ function randomizeTreePlacement(row, column) {
         } else randomizeTreePlacement(row, column);
     }
 
-    else if (options[treeDirection] === "right") {
+    else if (treeDirection === 1) {
         if (tableIndex[row][column + 1] !== undefined && document.getElementById("cell" + tableIndex[row][column + 1]).innerText !== "🌲") {
             document.getElementById("cell" + tableIndex[row][column + 1]).innerText = "🌲";
             document.getElementById("cell" + tableIndex[row][column + 1]).style.pointerEvents = 'none';
@@ -245,7 +236,7 @@ function randomizeTreePlacement(row, column) {
         } else randomizeTreePlacement(row, column);
     }
 
-    else if (options[treeDirection] === "down") {
+    else if (treeDirection === 2) {
         if (tableIndex[row + 1] !== undefined && document.getElementById("cell" + tableIndex[row + 1][column]).innerText !== "🌲") {
             document.getElementById("cell" + tableIndex[row + 1][column]).innerText = "🌲";
             document.getElementById("cell" + tableIndex[row + 1][column]).style.pointerEvents = 'none';
@@ -253,7 +244,7 @@ function randomizeTreePlacement(row, column) {
         } else randomizeTreePlacement(row, column);
     }
 
-    else if (options[treeDirection] === "left") {
+    else if (treeDirection === 3) {
         if (tableIndex[row][column - 1] !== undefined && document.getElementById("cell" + tableIndex[row][column - 1]).innerText !== "🌲") {
             document.getElementById("cell" + tableIndex[row][column - 1]).innerText = "🌲";
             document.getElementById("cell" + tableIndex[row][column - 1]).style.pointerEvents = 'none';
