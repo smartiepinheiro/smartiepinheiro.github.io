@@ -93,7 +93,7 @@ function turnCellsAllGreenOnWin() {
 
 // check if the player completed the table correctly :
 // there might be different ways to complete the table correctly 
-// so we can't, unfortunately, simply compare the tableIndex to the "solution"
+// so we can't, unfortunately, simply compare the tableIndex to the beggining solution
 function evaluateTable() {
 
     // top row
@@ -203,22 +203,20 @@ function randomizeTentPlacement() {
 
 // check if any of the surrounding cells already have tents placed
 function noSurroundingTents(row, column) {
-    const variations = [[-1,-1],[-1,0],[-1,1],[0,-1],[0,1],[1,-1],[1,0],[1,1]];
+    const variations = [[-1, -1], [-1, 0], [-1, 1], [0, -1], [0, 1], [1, -1], [1, 0], [1, 1]];
 
-    for(let i = 0; i < variations.length; i++) {
+    for (let i = 0; i < variations.length; i++) {
         if (auxTable[row + variations[i][0]] !== undefined
             && auxTable[row + variations[i][0]][column + variations[i][1]] !== undefined
             && auxTable[row + variations[i][0]][column + variations[i][1]] === "🏕️") {
             return false;
-        }
-    }
-    return true;
+        } else continue;
+    } return true;
 }
 
 // like the name suggests it randomizes the placement of a tree given a tent
 function randomizeTreePlacement(row, column) {
     let treeDirection = Math.floor(Math.random() * 4);
-    console.log(treeDirection);
 
     if (treeDirection === 0) {
         if (tableIndex[row - 1] !== undefined && document.getElementById("cell" + tableIndex[row - 1][column]).innerText !== "🌲") {
