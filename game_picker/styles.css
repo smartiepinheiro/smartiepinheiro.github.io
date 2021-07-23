@@ -9,6 +9,10 @@ body {
     font-size: 30px;
 }
 
+#additionalinfo {
+  margin-top: -25px;
+}
+
 .center {
     margin: auto;
     width: 50%;
