@@ -1,12 +1,12 @@
 body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #ffffff;
+  font-family: 'Roboto', sans-serif;
+  background-color: #ffffff;
 }
 
 #title {
-    text-align: center;
-    font-weight: bolder;
-    font-size: 30px;
+  text-align: center;
+  font-weight: bolder;
+  font-size: 30px;
 }
 
 #additionalinfo {
@@ -14,25 +14,44 @@ body {
 }
 
 .center {
-    margin: auto;
-    width: 50%;
-    padding: 20px;
-    text-align: center;
-  }
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+  text-align: center;
+}
 
 canvas {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 #spinningbutton {
-    background-color: #4CAF50;
-    border: none;
-    border-radius: 5%;
-    color: white;
-    padding: 16px 32px;
-    text-decoration: none;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
+  font-weight: bolder;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 5%;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+#submitbutton {
+  background-color: #be4b4b;
+  font-weight: bold;
+  border: none;
+  border-radius: 5%;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+#game_options {
+  font: Helvetica, Arial;
+  font-size: 12px;
+  border: 2px solid black;
+}

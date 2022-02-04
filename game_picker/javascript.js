@@ -1,4 +1,4 @@
-var options = ["codenames", "gartic phone", "stop", "joking hazard", "fishbowl"];
+var options = ["codenames", "gartic phone", "stop", "joking hazard", "fishbowl", "skribblio", "among us"];
 
 var startAngle = 0;
 var arc = Math.PI / (options.length / 2);
@@ -67,7 +67,7 @@ function drawRouletteWheel() {
         ctx.strokeStyle = "white";
         ctx.lineWidth = 0;
 
-        ctx.font = 'bold 20px Helvetica, Arial';
+        ctx.font = 'bold 15px Helvetica, Arial';
 
         for(var i = 0; i < options.length; i++) {
             var angle = startAngle + i * arc;
@@ -146,5 +146,11 @@ function easeOut(t, b, c, d) {
     var ts = (t/=d)*t;
     var tc = ts*t;
     return b+c*(tc + -3*ts + 3*t);
+}
+
+function updateWheel() {
+    options = document.getElementById("game_options").value.split(",");
+    arc = Math.PI / (options.length / 2);
+    drawRouletteWheel()
 }
   
