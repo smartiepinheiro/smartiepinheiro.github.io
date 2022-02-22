@@ -45,7 +45,6 @@ const auxTable = [
 
 // player's click
 function mouseDown(id) {
-    checkFirstClick();
     if (document.getElementById(id).innerText === "") {
         document.getElementById(id).innerText = "x";
         document.getElementById(id).style.fontSize = "0";
@@ -57,15 +56,6 @@ function mouseDown(id) {
         document.getElementById(id).innerText = "";
         document.getElementById(id).style.backgroundColor = "#6a8091";
     } checkWin();
-}
-
-// check if it's the first click so the timer starts
-function checkFirstClick() {
-    if (firstClick) {
-        firstClick = !firstClick;
-        time = !time;
-        setInterval(onGoingTimer, 1000);
-    }
 }
 
 // check if the player's table is solved
@@ -175,6 +165,12 @@ function hasAtLeastOneTent(row, column) {
 function tableGenerator() {
     randomizeTentPlacement();
     hints();
+    startTimer();
+}
+
+// starts the timer on page load
+function startTimer() {
+    setInterval(onGoingTimer, 1000);
 }
 
 // just for testing, deleting soon
@@ -305,7 +301,7 @@ let seconds = 1;
 let minutes = 0;
 let secondsToText = "";
 let minutesToText = "";
-let time = false;
+let time = true;
 
 function timeToText() {
     if (seconds < 10) secondsToText = "0" + seconds;

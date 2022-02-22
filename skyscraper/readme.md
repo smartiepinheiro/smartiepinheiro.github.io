@@ -20,12 +20,9 @@ Imagine it like the image bellow:
 ✔️ Rules button;  
 ✔️ Random generated solution every time;  
 ✔️ Random placed hints aka cell numbers already correctly filled in;  
-✔️ Hint cells and border numbers have the click disabled so they stay intact the whole game;  
 ✔️ Win after the players' table if fully and correctly completed (allowing multiple possible solutions);  
-✔️ Disables any table clicks at the end of the game;  
-✔️ 'Games won' stores the numbers of wins in the cookies and displays it to the user;    
-✔️ 'Current Time' timer, that starts with the first table click;  
-✔️ 'Current Time' resets on every game;  
+✔️ 'Games won' stores the numbers of wins in the cookies and displays it to the user;     
+✔️ 'Current Time' starts at page load and resets on every game;  
 ✔️ 'Highscore' time stored in the cookies, that updates and displays the user's fastest win time.  
 ✔️ Play Again button that reloads the game;  
 ✔️ Responsive to window resize: allows horizontal/vertical play.  

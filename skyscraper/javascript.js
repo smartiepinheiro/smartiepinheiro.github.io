@@ -16,8 +16,6 @@ function rules() {
 }
 
 // variables
-let firstClick = true;
-
 const topRow = [2, 3, 4, 5, 6, 7];
 const bottomRow = [57, 58, 59, 60, 61, 62];
 const leftColumn = [8, 16, 24, 32, 40, 48];
@@ -46,7 +44,6 @@ const solution = [[5, 6, 1, 4, 3, 2],
 
 // player's click
 function mouseDown(id) {
-    checkFirstClick();
     if(document.getElementById(id).innerText === "6") {
         document.getElementById(id).innerText = "0";
         document.getElementById(id).style.fontSize = "0";
@@ -59,15 +56,6 @@ function mouseDown(id) {
         const index = findTableIndexFromId(id);
         playerTable[index[0]][index[1]] = parseInt(document.getElementById(id).innerText);
     } checkWin();
-}
-
-// check if it's the first click so the timer starts
-function checkFirstClick() {
-    if(firstClick) {
-        firstClick = !firstClick;
-        time = !time;
-        setInterval(onGoingTimer, 1000);
-    }
 }
 
 // check if playerTable is equal to the solution
@@ -283,6 +271,12 @@ function tableGenerator() {
     updateTable();
     setupNumberCounters();
     hints();
+    startTimer();
+}
+
+// starts the timer on page load
+function startTimer() {
+    setInterval(onGoingTimer, 1000);
 }
 
 //
@@ -378,7 +372,7 @@ let seconds = 1;
 let minutes = 0;
 let secondsToText = "";
 let minutesToText = "";
-let time = false;
+let time = true;
 
 function timeToText() {
     if (seconds < 10) secondsToText = "0" + seconds;

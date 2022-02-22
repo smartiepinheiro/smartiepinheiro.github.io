@@ -22,7 +22,6 @@ A correctly solved board could look something like this:
 ✔️ Rules button;  
 ✔️ Random generated solution every time;  
 ✔️ Win after the players' table if fully and correctly completed (allowing multiple possible solutions);  
-✔️ Disables any table clicks at the end of the game;  
 ✔️ 'Games won' stores the numbers of wins in the localstorage and displays it to the user;    
 ✔️ 'Current Time' timer, that starts with the first table click;  
 ✔️ 'Current Time' resets on every game;  
