@@ -71,7 +71,7 @@ function checkFirstClick() {
     }
 }
 
-// check how many bombs are adjacent to a given cell
+// updates cells' colors
 function updateCells(aux, id) {
     switchColor("cell" + id);
     for (let i = 0; i < aux.length; i++) {
@@ -87,7 +87,6 @@ function switchColor(id) {
 }
 
 // loop used in various methods to update cell values
-// example - method: unpinAndRestore, id: 40 (number of the cell)
 function generalCellUpdate(id) {
     id = parseInt(id.replace("cell", ""));
     if (topLeft.includes(id))
@@ -112,13 +111,6 @@ function generalCellUpdate(id) {
 function checkWinSituation() {
     const color = document.getElementById("cell1").style.backgroundColor;
     for (let i = 2; i < 50; i++) {
-        console.log(document.getElementById("cell1").style.backgroundColor);
-        console.log(document.getElementById("cell2").style.backgroundColor);
-        console.log(document.getElementById("cell3").style.backgroundColor);
-        console.log(document.getElementById("cell4").style.backgroundColor);
-        console.log(document.getElementById("cell5").style.backgroundColor);
-        console.log(document.getElementById("cell6").style.backgroundColor);
-        console.log(document.getElementById("cell7").style.backgroundColor);
         if(document.getElementById("cell" + i).style.backgroundColor !== color)
             return false;
     } return true;

@@ -18,7 +18,6 @@ The catch is, **so do the cells around** (up, down, left, right). As an example:
 ✔️ Random generated solution every time;   
 ✔️ Each and every game is solvable, the beginning colors are not just random;   
 ✔️ Win after the cells are either all red or all green;   
-✔️ Disables any table clicks at the end of the game;  
 ✔️ 'Games won' stores the numbers of wins in the cookies and displays it to the user;    
 ✔️ 'Current Time' timer, that starts with the first table click;  
 ✔️ 'Current Time' resets on every game;  
